@@ -23,11 +23,31 @@
   </view>
   <!-- 导航菜单 -->
   <view class="navMenu">
-    <block wx:for="{{menus}}" wx:key="index"  >
+    <block wx:for="{{menus}}" wx:key="index">
       <navigator url="{{item.url}}" open-type="{{item.open_type}}">
         <image src="{{item.image_src}}"></image>
       </navigator>
     </block>
+  </view>
+  <!-- 楼层 -->
+  <view class="floor" wx:for="{{products}}" wx:key="index" >
+    <!-- 楼层头部 -->
+    <view class="floor-title">
+      <image src="{{item.floor_title.image_src}}"></image>
+    </view>
+    <!-- 楼层产品 -->
+    <view class="floor-product">
+      <!-- 左侧产品大图 -->
+      <view class="floor-product-left">
+        <image src="{{item.product_list[0].image_src}}"></image>
+      </view>
+      <!-- 右侧产品小图 -->
+      <view class="floor-product-right" >
+        <view class="product-right-img" wx:for="{{item.product_list}}" wx:key="index" wx:if="{{index !== 0}}">
+          <image src="{{item.image_src}}"></image>
+        </view>
+      </view>
+    </view>
   </view>
 
 </view>

@@ -1,19 +1,25 @@
 //index.js
 //获取应用实例
 const app = getApp()
-import { request, get } from '../../utils/request.js'
+import {
+  request,
+  get
+} from '../../utils/request.js'
 Page({
   data: {
     // 轮播图
     banners: [],
     // 导航菜单
-    menus: []
+    menus: [],
+    products: []
   },
   onLoad() {
-  //  获取轮播图
-  this.getBanners()
-  // 获取导航菜单
-    this.getMeun(0)
+    //  获取轮播图
+    this.getBanners()
+    // 获取导航菜单
+    this.getMeun()
+    // 获取楼层产品
+    this.getProducts()
   },
   // 获取轮播图
   getBanners() {
@@ -21,8 +27,10 @@ Page({
       url: '/home/swiperdata'
     }).then(res => {
       // console.log(res)
-      const { message } = res.data
-      if(!message) return;
+      const {
+        message
+      } = res.data
+      if (!message) return;
       this.setData({
         banners: message
       })
@@ -31,16 +39,18 @@ Page({
   // 获取导航菜单
   getMeun() {
     get({
-      url:'/home/catitems'
+      url: '/home/catitems'
     }).then(res => {
-      console.log(res)
-      let { message } = res.data
-      if(!message) return;
+      // console.log(res)
+      let {
+        message
+      } = res.data
+      if (!message) return;
       // 改变跳转链接
       message = message.map(val => {
-        if(val.name === '分类') {
+        if (val.name === '分类') {
           val.url = '/pages/category/index'
-        }else {
+        } else {
           val.open_type = "navigate"
         }
         return val
@@ -48,6 +58,19 @@ Page({
       // 赋值给 menus
       this.setData({
         menus: message
+      })
+    })
+  },
+  // 获取产品图
+  getProducts() {
+    get({
+      url: '/home/floordata'
+    }).then(res => {
+      console.log(res)
+      let { message }  = res.data
+      if(!message)  return;
+      this.setData({
+        products: message
       })
     })
   }
