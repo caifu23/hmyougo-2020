@@ -84,3 +84,27 @@
   width: 268rpx;
 }
 
+.toTop {
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 50%;
+  padding: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  color: #848484;
+  background-color: #eee;
+  font-size: 12px;
+}
+.toTop .toTopArrow {
+  border-left: 1px solid #848484;
+  border-top: 1px solid #848484;
+  width: 30rpx;
+  height: 30rpx;
+  transform: rotate( 45deg )
+}
+

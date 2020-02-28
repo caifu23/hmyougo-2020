@@ -49,5 +49,10 @@
       </view>
     </view>
   </view>
+  <!-- 回到顶部 -->
+  <view class="toTop" wx:if="{{isShowTop}}" bindtap="handlerToTop">
+    <view class="toTopArrow"></view>
+    <text> 顶部 </text>
+  </view>
 
 </view>
