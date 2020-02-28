@@ -1,4 +1,33 @@
 <!--index.wxml-->
 <view class="container">
-  首页
+  <!-- 搜索框 -->
+  <view class="search">
+    <navigator url="">
+      <view class="search-in">
+        <icon type="search" color="#bbb" />
+        <text> 搜索 </text>
+      </view>
+    </navigator>
+  </view>
+  <!-- 轮播图 -->
+  <view class="swiper">
+    <swiper indicator-dots indicator-color="rgba(255,255,255, .4)" indicator-active-color="rgba(255,255,255, 1)" circular>
+      <block wx:for="{{banners}}" wx:key="index">
+        <swiper-item>
+          <navigator url="">
+            <image src="{{item.image_src}}"></image>
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 导航菜单 -->
+  <view class="navMenu">
+    <block wx:for="{{menus}}" wx:key="index"  >
+      <navigator url="{{item.url}}" open-type="{{item.open_type}}">
+        <image src="{{item.image_src}}"></image>
+      </navigator>
+    </block>
+  </view>
+
 </view>
