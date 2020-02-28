@@ -1,0 +1,3 @@
+/**app.wxss**/
+/* 引入公共图标 */
+@import './common/styles.wxss'
