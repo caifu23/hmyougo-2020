@@ -1,2 +1,46 @@
 <!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<view class="category">
+  <!-- 搜索框 -->
+  <view class="search">
+    <navigator url="">
+      <view class="search-in">
+        <icon type="search" color="#bbb" />
+        <text> 搜索 </text>
+      </view>
+    </navigator>
+  </view>
+  <!-- 分类 -->
+  <view class="cate">
+    <!-- 左侧大分类 -->
+    <view class="cate-left">
+      <scroll-view scroll-y="true" style="height: 940rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+        <block wx:for="{{categories}}" wx:key="index">
+          <view class="cate-left-box {{currentCate === index ? 'active' : ''}}" bindtap="changeCurrentCate" data-currentIndex="{{index}}">
+            <view class="cate-left-name  {{currentCate === index ? 'active' : ''}}">
+              {{item.cat_name}}
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+
+    </view>
+    <!-- 右侧小分类  -->
+    <view class="cate-right">
+      <block wx:for="{{categories[currentCate].children}}" wx:key="index">
+        <view class="cate-right-box" wx:if="{{item.children}}">
+          <!-- 分类名 -->
+          <view class="cate-right-title"> /
+            <text> {{item.cat_name}} </text> / </view>
+          <!-- 分类 -->
+          <view class="cate-right-main">
+            <navigator url="" wx:for="{{item.children}}" wx:key="index">
+              <image src="{{item.cat_icon}}"></image>
+              <text> {{item.cat_name}} </text>
+            </navigator>
+          </view>
+        </view>
+      </block>
+
+    </view>
+  </view>
+</view>

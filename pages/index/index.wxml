@@ -11,7 +11,7 @@
   </view>
   <!-- 轮播图 -->
   <view class="swiper">
-    <swiper indicator-dots indicator-color="rgba(255,255,255, .4)" indicator-active-color="rgba(255,255,255, 1)" circular>
+    <swiper indicator-dots indicator-color="rgba(255,255,255, .4)" indicator-active-color="rgba(255,255,255, 1)" circular autoplay>
       <block wx:for="{{banners}}" wx:key="index">
         <swiper-item>
           <navigator url="">

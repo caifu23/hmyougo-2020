@@ -1,1 +1,105 @@
 /* pages/category/index.wxss */
+
+.search {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  background-color: #ff2d4a;
+}
+.search-in {
+  display: flex;
+  justify-content: center;
+  align-items: middle;
+  border-radius: 4px;
+  padding: 10rpx 0;
+  font-size: 14px;
+  color: #bbb;
+  background-color: #fff;
+}
+.search-in icon {
+  margin-right: 15rpx;
+}
+
+.cate {
+  margin-top: 50px;
+  position: relative;
+  display: flex;
+}
+.cate-left {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  margin-right: 20rpx;
+  width: 193rpx;
+  background-color: #fff;
+}
+/* ::-webkit-scrollbar 
+   这个属性使 scroll-view的滚动条不显示
+ */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 10px;
+  color: transparent;
+}
+.cate-left-box {
+  padding: 20rpx 0;
+  background-color: #f4f4f4;
+}
+.cate-left-box.active {
+  background-color: #fff;
+}
+.cate-left-name {
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #424242;
+}
+.cate-left-name.active {
+  border-left: 5px solid #eb4450;
+  color: #eb4450;
+}
+.cate-right {
+  margin-left: 213rpx;
+  width: 522rpx;
+  background-color: #fff;
+}
+
+.cate-right-box {
+  margin-top: 15px;
+}
+.cate-right-title {
+  padding: 8px 0;
+  font-size: 11px;
+  text-align: center;
+  color: #ccc;
+}
+.cate-right-title text {
+  padding: 0 5px;
+  font-size: 14px;
+  color: #4d4d4d;
+}
+
+.cate-right-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cate-right-main navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 174rpx;
+}
+.cate-right-main navigator text {
+  font-size: 12px;
+  color: #666;
+}
+.cate-right-main image {
+  width: 120rpx;
+  height: 125rpx;
+}

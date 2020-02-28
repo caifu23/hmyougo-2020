@@ -1,66 +1,60 @@
 // pages/category/index.js
+import { get, post } from '../../utils/request.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    currentCate: 0,
+    categories: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 获取分类
+    this.getCategories()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 获取分类数据
+  getCategories() {
+    get({
+      url: '/categories'
+    }).then(res => {
+      console.log(res)
+      let { message } = res.data
+      if(!message) return;
+      this.setData({
+        categories: message
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 改变当前分类(索引)
+  changeCurrentCate(e) {
+    let currentIndex = e.currentTarget.dataset.currentindex
+    this.setData({
+      currentCate: currentIndex
+    })
+    // 并且滚动顶部
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  upper(e) {
+    console.log(e)
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  lower(e) {
+    console.log(e)
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  scroll(e) {
+    console.log(e)
   }
 })
