@@ -1,14 +1,7 @@
 <!--pages/category/index.wxml-->
 <view class="category">
-  <!-- 搜索框 -->
-  <view class="search">
-    <navigator url="">
-      <view class="search-in">
-        <icon type="search" color="#bbb" />
-        <text> 搜索 </text>
-      </view>
-    </navigator>
-  </view>
+  <!-- 搜索框 引入公共组件 -->
+  <search />
   <!-- 分类 -->
   <view class="cate">
     <!-- 左侧大分类 -->
@@ -34,7 +27,7 @@
           <!-- 分类 -->
           <view class="cate-right-main">
             <navigator url="" wx:for="{{item.children}}" wx:key="index">
-              <image src="{{item.cat_icon}}"></image>
+              <image src="{{item.cat_icon}}" mode="widthFix"></image>
               <text> {{item.cat_name}} </text>
             </navigator>
           </view>

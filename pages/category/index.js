@@ -46,15 +46,18 @@ Page({
     })
   },
 
+  // 左侧大分类向上滑动
   upper(e) {
-    console.log(e)
+    // console.log(e)
   },
 
+  // 左侧大分类向下滑动
   lower(e) {
-    console.log(e)
+    // console.log(e)
   },
 
+  // 左侧大分类滚动
   scroll(e) {
-    console.log(e)
+    // console.log(e)
   }
 })

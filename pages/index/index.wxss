@@ -1,24 +1,7 @@
 /**index.wxss**/
 
-.search {
-  padding: 20rpx;
-  background-color: #ff2d4a;
-}
-.search-in {
-  display: flex;
-  justify-content: center;
-  align-items: middle;
-  border-radius: 4px;
-  padding: 10rpx 0;
-  font-size: 14px;
-  color: #bbb;
-  background-color: #fff;
-}
-.search-in icon {
-  margin-right: 15rpx;
-}
-
 .swiper {
+  margin-top: 100rpx;
   height: 340rpx;
 }
 .swiper image {
