@@ -5,7 +5,7 @@
     <icon type="search" size="20" />
     <input class="search-input" auto-focus placeholder="请输入你想要的商品" confirm-type="search" bindinput="handlerSearch" bindconfirm="handlerConfirm" value="{{query}}" />
   </view>
-  <view wx:if="{{query.length > 0}}">
+  <view wx:if="{{query.length > 0 || productList.length !== 0}}">
     <!-- 条件筛选 -->
     <view class="search-condition">
       <view class="multiple {{currentCondition === 0 ? 'active' : ''}}">

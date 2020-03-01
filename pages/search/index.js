@@ -8,6 +8,7 @@ Page({
    */
   data: {
     query: '',
+    cid: '',
     productList: [],
     currentCondition: 0,
     priceUpDown: 0,  // 0 代表降序 1 代表升序
@@ -21,6 +22,18 @@ Page({
   onLoad: function (options) {
     // 获取历史搜索
     this.getHistory()
+    // 获取当前跳转页面是否携带 查询参数
+    // console.log(options)
+    let cid = options.cid // 分类id
+    if(cid) {
+      this.setData({
+        cid: cid
+      })
+      // 搜索
+      this.searchProductKey({
+        cid: this.data.cid
+      })
+    }
   },
 
   // 搜索框输入时
@@ -36,7 +49,9 @@ Page({
     this.setData({
       status: 'search'
     })
-    this.searchProductKey()
+    this.searchProductKey({
+      query: this.data.query
+    })
   },
 
   // 搜索框确认时, 存储 搜索历史
@@ -56,12 +71,14 @@ Page({
   },
 
   // 根据关键词 搜索商品
-  searchProductKey() {
+  searchProductKey(options) {
     get({
       url: "/goods/search",
-      data: {
-        query: this.data.query
-      }
+      data: options
+      // data: {
+      //   query: this.data.query,
+      //   // cid: this.data.cid
+      // }
     }).then(res => {
       // console.log(res)
       let { goods } = res.data.message
@@ -132,7 +149,9 @@ Page({
         query: queryArr[index]
       })
       // 并手动触发一次搜索
-      this.searchProductKey()
+      this.searchProductKey({
+        query: this.data.query
+      })
     // }, 100)
   }
 

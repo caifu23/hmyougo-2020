@@ -26,7 +26,7 @@
             <text> {{item.cat_name}} </text> / </view>
           <!-- 分类 -->
           <view class="cate-right-main">
-            <navigator url="" wx:for="{{item.children}}" wx:key="index">
+            <navigator url="../search/index?cid={{item.cat_id}}" wx:for="{{item.children}}" wx:key="index">
               <image src="{{item.cat_icon}}" mode="widthFix" lazy-load></image>
               <text> {{item.cat_name}} </text>
             </navigator>
