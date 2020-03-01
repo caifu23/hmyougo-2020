@@ -1,0 +1,44 @@
+<!--pages/search/index.wxml-->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search">
+    <icon type="search" size="20" />
+    <input class="search-input" auto-focus placeholder="请输入你想要的商品" confirm-type="search" bindinput="handlerSearch" />
+  </view>
+  <!-- 条件筛选 -->
+  <view class="search-condition">
+    <view class="multiple {{currentCondition === 0 ? 'active' : ''}}">
+      <text> 综合 </text>
+    </view>
+    <view class="sales  {{currentCondition === 1 ? 'active' : ''}}">
+      <text> 销量 </text>
+    </view>
+    <view class="prices  {{currentCondition === 2 ? 'active' : ''}}">
+      <text> 价格 </text>
+      <view class="down-up">
+        <view class="up current"></view>
+        <view class="down"></view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view class="products">
+    <block wx:for="{{productList}}" wx:key="index">
+      <navigator url="">
+        <view class="products-inner">
+          <view class="pro-left">
+            <image src="{{item.goods_big_logo}}" mode="widthFix"></image>
+          </view>
+          <view class="pro-right">
+            <view class="pro-title"> {{item.goods_name}} </view>
+            <view class="pro-price">
+              ￥
+              <text>{{item.goods_price}}</text>.00
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+  </view>
+  <!-- 历史记录 -->
+</view>
