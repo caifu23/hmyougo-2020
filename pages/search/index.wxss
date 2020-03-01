@@ -146,3 +146,12 @@
   font-size: 12px;
   background-color: #dedede;
 }
+
+.noneProduct {
+  margin-top: 50px;
+  padding: 20rpx;
+  text-align: center;
+}
+.noneProduct icon {
+  font-size: 24px;
+}

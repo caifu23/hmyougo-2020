@@ -3,7 +3,7 @@
   <!-- 搜索框 -->
   <view class="search">
     <icon type="search" size="20" />
-    <input class="search-input" auto-focus placeholder="请输入你想要的商品" confirm-type="search" bindinput="handlerSearch" bindconfirm="handlerConfirm" />
+    <input class="search-input" auto-focus placeholder="请输入你想要的商品" confirm-type="search" bindinput="handlerSearch" bindconfirm="handlerConfirm" value="{{query}}" />
   </view>
   <view wx:if="{{query.length > 0}}">
     <!-- 条件筛选 -->
@@ -23,7 +23,7 @@
       </view>
     </view>
     <!-- 商品列表 -->
-    <view class="products">
+    <view class="products" wx:if="{{ status === 'end' }}" >
       <block wx:for="{{productList}}" wx:key="index">
         <navigator url="">
           <view class="products-inner">
@@ -42,16 +42,21 @@
         </navigator>
       </block>
     </view>
+    <view class="noneProduct">
+      <text wx:if="{{productList.length === 0 && status === 'end' }}"> 没有更多商品了 </text>
+      <!-- 加载中 -->
+      <view wx:if= "{{status === 'search' }}" > 加载中 <icon class="iconfont icon-loading"></icon> </view>
+    </view>
   </view>
   <!-- 历史记录 -->
-  <view wx:if="{{query.length == 0 && queryArr.length !== 0 }}" class="history">
+  <view  wx:if="{{query.length == 0 && queryArr.length !== 0 }}" class="history">
     <view class="history-head">
       <text> 历史搜索 </text>
       <!-- 清空历史搜索 -->
       <icon class="iconfont icon-close" bindtap="delHistory"></icon>
     </view>
     <view class="history-list">
-      <view class="history-item" wx:for="{{queryArr}}" wx:key="index" > {{item}} </view>
+      <view class="history-item" wx:for="{{queryArr}}" wx:key="index" bindtap="changeQuery" data-index="{{index}}" > {{item}} </view>
     </view>
   </view>
 </view>
