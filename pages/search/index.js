@@ -9,6 +9,8 @@ Page({
   data: {
     query: '',
     cid: '',
+    pagenum: 1, //页码
+    pagesize: 10, //页容量: 每页数据条数
     productList: [],
     currentCondition: 0,
     priceUpDown: 0,  // 0 代表降序 1 代表升序
@@ -25,15 +27,46 @@ Page({
     // 获取当前跳转页面是否携带 查询参数
     // console.log(options)
     let cid = options.cid // 分类id
+    let query = options.query // 查询关键词
     if(cid) {
       this.setData({
         cid: cid
       })
       // 搜索
       this.searchProductKey({
-        cid: this.data.cid
+        cid: this.data.cid,
+        pagenum: this.data.pagenum,
+        pagesize: this.data.pagesize
       })
     }
+    if (query) {
+      this.setData({
+        query: query
+      })
+      // 搜索
+      this.searchProductKey({
+        query: this.data.query,
+        pagenum: this.data.pagenum,
+        pagesize: this.data.pagesize
+      })
+    }
+  },
+
+  /**
+   * 生命周期函数--监听用户上拉触底事件
+  */
+  onReachBottom() {
+    console.log('触底了')
+    // 页码加一
+    this.setData({
+      pagenum: this.data.pagenum + 1
+    })
+    // 加载下一页数据
+    this.searchProductKey({
+      query: this.data.query,
+      pagenum: this.data.pagenum,
+      pagesize: this.data.pagesize
+    })
   },
 
   // 搜索框输入时
@@ -50,7 +83,9 @@ Page({
       status: 'search'
     })
     this.searchProductKey({
-      query: this.data.query
+      query: this.data.query,
+      pagenum: this.data.pagenum,
+      pagesize: this.data.pagesize
     })
   },
 
@@ -83,8 +118,11 @@ Page({
       // console.log(res)
       let { goods } = res.data.message
       // console.log(goods)
+      // 追加下一页数据到 productList 中
+      this.data.productList.push(...goods)
+      // 赋值
       this.setData({
-        productList: goods
+        productList: this.data.productList
       }),
       // 当前状态修改 完成搜索
       this.setData({
@@ -150,7 +188,9 @@ Page({
       })
       // 并手动触发一次搜索
       this.searchProductKey({
-        query: this.data.query
+        query: this.data.query,
+        pagenum: this.data.pagenum,
+        pagesize: this.data.pagesize
       })
     // }, 100)
   }
