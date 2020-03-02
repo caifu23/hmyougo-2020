@@ -11,6 +11,7 @@ Page({
     cid: '',
     pagenum: 1, //页码
     pagesize: 10, //页容量: 每页数据条数
+    total: 0,
     productList: [],
     currentCondition: 0,
     priceUpDown: 0,  // 0 代表降序 1 代表升序
@@ -56,6 +57,10 @@ Page({
    * 生命周期函数--监听用户上拉触底事件
   */
   onReachBottom() {
+    // 判断 产品数据 productList 是否已经达到最大长度
+    if (this.data.productList.length === this.data.total && this.data.total) {
+      return;
+    }
     console.log('触底了')
     // 页码加一
     this.setData({
@@ -81,6 +86,12 @@ Page({
     // 当前状态开启 搜索中
     this.setData({
       status: 'search'
+    })
+    // 重置 商品数据,页码,total
+    this.setData({
+      pagenum: 1,
+      productList: [],
+      total: 0
     })
     this.searchProductKey({
       query: this.data.query,
@@ -116,9 +127,13 @@ Page({
       // }
     }).then(res => {
       // console.log(res)
-      let { goods } = res.data.message
+      let { goods, total } = res.data.message
+      // 保存商品总数
+      this.setData({
+        total: total
+      })
       // console.log(goods)
-      // 追加下一页数据到 productList 中
+      // 追加下一页商品数据到 productList 中
       this.data.productList.push(...goods)
       // 赋值
       this.setData({
