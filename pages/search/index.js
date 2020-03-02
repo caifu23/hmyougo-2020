@@ -133,6 +133,11 @@ Page({
         })
         // console.log(goods)
         // 追加下一页商品数据到 productList 中
+        // 修改goods里数据 -- 价格保留2位小数
+        goods = goods.map( v => {
+          v.goods_price = Number(v.goods_price).toFixed(2)
+          return v
+        } )
         this.data.productList.push(...goods)
         // 赋值
         this.setData({

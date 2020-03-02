@@ -34,7 +34,7 @@
               <view class="pro-title"> {{item.goods_name}} </view>
               <view class="pro-price">
                 ￥
-                <text>{{item.goods_price}}</text>.00
+                <text>{{item.goods_price}}</text>
                 <icon class="iconfont icon-cart"></icon>
               </view>
             </view>

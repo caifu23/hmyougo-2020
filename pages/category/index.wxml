@@ -6,7 +6,7 @@
   <view class="cate">
     <!-- 左侧大分类 -->
     <view class="cate-left">
-      <scroll-view scroll-y="true" style="height: 100vh;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <scroll-view scroll-y="true" style="height: 100vh;" bindscrolltoupper="upperLeft" bindscrolltolower="lowerLeft" bindscroll="leftScroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTopLeft}}">
         <block wx:for="{{categories}}" wx:key="index">
           <view class="cate-left-box {{currentCate === index ? 'active' : ''}}" bindtap="changeCurrentCate" data-currentIndex="{{index}}">
             <view class="cate-left-name  {{currentCate === index ? 'active' : ''}}">
@@ -19,7 +19,7 @@
     </view>
     <!-- 右侧小分类  -->
     <view class="cate-right">
-    <scroll-view scroll-y="true" style="height: 100vh" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y="true" style="height: 100vh" bindscrolltoupper="upperRight" bindscrolltolower="lowerRight" bindscroll="rightScroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTopRight}}">
       <block wx:for="{{categories[currentCate].children}}" wx:key="index">
         <view class="cate-right-box" wx:if="{{item.children}}">
           <!-- 分类名 -->

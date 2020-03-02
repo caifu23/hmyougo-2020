@@ -9,7 +9,8 @@ Page({
   data: {
     currentCate: 0,
     categories: [],
-    scrollTop: 0, 
+    scrollTopLeft: 0, 
+    scrollTopRight: 0
   },
 
   /**
@@ -40,25 +41,44 @@ Page({
     this.setData({
       currentCate: currentIndex
     })
-    // 并且滚动顶部
+    // 并且 右侧小分类 滚动顶部
+    this.setData({
+      scrollTopRight: 0
+    })
+    // 并且滚动顶部 这在scroll-view不可使用
     // wx.pageScrollTo({
     //   scrollTop: 0,
     //   duration: 300
     // })
   },
 
-  // 左侧大分类向上滑动
-  upper(e) {
+  // 左侧大分类滚动到顶部
+  upperLeft(e) {
+    // console.log(e)
+  },
+  // 右侧小分类滚动到顶部
+  upperRight(e) {
     // console.log(e)
   },
 
-  // 左侧大分类向下滑动
-  lower(e) {
+  // 左侧大分类滚动到底部
+  lowerLeft(e) {
+    // console.log(e)
+  },
+  // 右侧小分类滚动到底部
+  lowerRight(e) {
     // console.log(e)
   },
 
   // 左侧大分类滚动
-  scroll(e) {
+  leftScroll(e) {
+    // console.log('left')
     // console.log(e)
+  },
+  // 右侧小分类滚动
+  rightScroll(e) {
+    // console.log('right')
+    // console.log(e)
+    // console.log(this.data.scrollTopRight)
   }
 })
