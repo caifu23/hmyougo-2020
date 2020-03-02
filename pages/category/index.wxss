@@ -6,9 +6,9 @@
   display: flex;
 }
 .cate-left {
-  position: fixed;
+  /* position: fixed;
   top: 50px;
-  left: 0;
+  left: 0; */
   margin-right: 20rpx;
   width: 193rpx;
   background-color: #fff;
@@ -40,7 +40,7 @@
   color: #eb4450;
 }
 .cate-right {
-  margin-left: 213rpx;
+  /* margin-left: 213rpx; */
   width: 522rpx;
   background-color: #fff;
 }

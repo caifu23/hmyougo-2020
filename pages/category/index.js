@@ -8,7 +8,8 @@ Page({
    */
   data: {
     currentCate: 0,
-    categories: []
+    categories: [],
+    scrollTop: 0, 
   },
 
   /**
@@ -40,10 +41,10 @@ Page({
       currentCate: currentIndex
     })
     // 并且滚动顶部
-    wx.pageScrollTo({
-      scrollTop: 0,
-      duration: 300
-    })
+    // wx.pageScrollTo({
+    //   scrollTop: 0,
+    //   duration: 300
+    // })
   },
 
   // 左侧大分类向上滑动
