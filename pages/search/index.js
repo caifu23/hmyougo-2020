@@ -1,5 +1,8 @@
 // pages/search/index.js
-import { get, post } from '../../utils/request.js'
+import {
+  get,
+  post
+} from '../../utils/request.js'
 
 Page({
 
@@ -14,7 +17,7 @@ Page({
     total: 0,
     productList: [],
     currentCondition: 0,
-    priceUpDown: 0,  // 0 代表降序 1 代表升序
+    priceUpDown: 0, // 0 代表降序 1 代表升序
     queryArr: [],
     status: 'start', // 'start'初始状态/ 'search'搜索中 / 'end'搜索完成
   },
@@ -22,24 +25,25 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 获取历史搜索
     this.getHistory()
     // 获取当前跳转页面是否携带 查询参数
     // console.log(options)
     let cid = options.cid // 分类id
     let query = options.query // 查询关键词
-    if(cid) {
-      this.setData({
-        cid: cid
-      })
-      // 搜索
-      this.searchProductKey({
-        cid: this.data.cid,
-        pagenum: this.data.pagenum,
-        pagesize: this.data.pagesize
-      })
-    }
+    // 注释--实现分类id查询
+    // if (cid) {
+    //   this.setData({
+    //     cid: cid
+    //   })
+    //   // 搜索
+    //   this.searchProductKey({
+    //     cid: this.data.cid,
+    //     pagenum: this.data.pagenum,
+    //     pagesize: this.data.pagesize
+    //   })
+    // }
     if (query) {
       this.setData({
         query: query
@@ -55,10 +59,14 @@ Page({
 
   /**
    * 生命周期函数--监听用户上拉触底事件
-  */
+   */
   onReachBottom() {
     // 判断 产品数据 productList 是否已经达到最大长度
     if (this.data.productList.length === this.data.total && this.data.total) {
+      return;
+    }
+    // 如果有请求中的状态, 则不可以发起请求, 等待请求结束
+    if (this.data.status === 'search') {
       return;
     }
     console.log('触底了')
@@ -77,7 +85,9 @@ Page({
   // 搜索框输入时
   handlerSearch(e) {
     // console.log(e)
-    let { value } = e.detail
+    let {
+      value
+    } = e.detail
     this.setData({
       query: value
     })
@@ -103,7 +113,9 @@ Page({
   // 搜索框确认时, 存储 搜索历史
   handlerConfirm(e) {
     // console.log(e)
-    let { value } = e.detail
+    let {
+      value
+    } = e.detail
     let orgArr = this.data.queryArr
     orgArr.unshift(value)
     this.setData({
@@ -118,37 +130,49 @@ Page({
 
   // 根据关键词 搜索商品
   searchProductKey(options) {
-    get({
-      url: "/goods/search",
-      data: options
-      // data: {
-      //   query: this.data.query,
-      //   // cid: this.data.cid
-      // }
-    }).then(res => {
-      // console.log(res)
-      let { goods, total } = res.data.message
-      // 保存商品总数
-      this.setData({
-        total: total
-      })
-      // console.log(goods)
-      // 追加下一页商品数据到 productList 中
-      this.data.productList.push(...goods)
-      // 赋值
-      this.setData({
-        productList: this.data.productList
-      }),
-      // 当前状态修改 完成搜索
-      this.setData({
-        status: 'end'
-      })
+    // 当前状态开启 搜索中
+    this.setData({
+      status: 'search'
     })
+    // 定时器模拟网络请求延迟
+    setTimeout(() => {
+      get({
+        url: "/goods/search",
+        data: options
+        // data: {
+        //   query: this.data.query,
+        //   // cid: this.data.cid
+        // }
+      }).then(res => {
+        // console.log(res)
+        let {
+          goods,
+          total
+        } = res.data.message
+        // 保存商品总数
+        this.setData({
+          total: total
+        })
+        // console.log(goods)
+        // 追加下一页商品数据到 productList 中
+        this.data.productList.push(...goods)
+        // 赋值
+        this.setData({
+            productList: this.data.productList
+          }),
+          // 当前状态修改 完成搜索
+          this.setData({
+            status: 'end'
+          })
+      })
+    }, 2000)
   },
 
   // 点击筛选条件时
   handlerCondition(e) {
-    let { condition } = e.currentTarget.dataset
+    let {
+      condition
+    } = e.currentTarget.dataset
     this.setData({
       currentCondition: condition
     })
@@ -193,20 +217,22 @@ Page({
   // 点击搜索历史
   changeQuery(e) {
     // 点击搜索词,更改到搜索框
-    let { index } = e.currentTarget.dataset
+    let {
+      index
+    } = e.currentTarget.dataset
     let queryArr = this.data.queryArr
     // 手机端预览出现 点击之后2次闪现,最后搜索词没覆盖?
     // 所以用来延时
     // setTimeout(() => {
-      this.setData({
-        query: queryArr[index]
-      })
-      // 并手动触发一次搜索
-      this.searchProductKey({
-        query: this.data.query,
-        pagenum: this.data.pagenum,
-        pagesize: this.data.pagesize
-      })
+    this.setData({
+      query: queryArr[index]
+    })
+    // 并手动触发一次搜索
+    this.searchProductKey({
+      query: this.data.query,
+      pagenum: this.data.pagenum,
+      pagesize: this.data.pagesize
+    })
     // }, 100)
   }
 

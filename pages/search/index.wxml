@@ -23,7 +23,7 @@
       </view>
     </view>
     <!-- 商品列表 -->
-    <view class="products" wx:if="{{ status === 'end' }}" >
+    <view class="products" wx:if="{{ status !== 'start' }}" >
       <block wx:for="{{productList}}" wx:key="index">
         <navigator url="">
           <view class="products-inner">
@@ -43,7 +43,10 @@
       </block>
     </view>
     <view class="noneProduct">
-      <text wx:if="{{productList.length === 0 && status === 'end' }}"> 没有更多商品了 </text>
+      <!-- 搜索结束,没有数据 -->
+      <text wx:if="{{productList.length === 0 && status === 'end' }}"> 抱歉,没有找到相关商品 </text>
+      <!-- 加载下一页结束, 并且已经是全部数据时 -->
+      <text wx:if="{{productList.length === total && total  && status === 'end' }}"> 没有更多商品了 </text>
       <!-- 加载中 -->
       <view wx:if= "{{status === 'search' }}" > 加载中 <icon class="iconfont icon-loading"></icon> </view>
     </view>
