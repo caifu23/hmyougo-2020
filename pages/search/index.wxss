@@ -155,3 +155,17 @@
 .noneProduct icon {
   font-size: 24px;
 }
+
+.toTop {
+  position: fixed;
+  right: 30rpx;
+  bottom: 90rpx;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, .8);
+  box-shadow: 0px 1px 1px rgba(0,0,0, .3)
+}
+.toTop icon {
+  font-size: 25px;
+  color: gray;
+}

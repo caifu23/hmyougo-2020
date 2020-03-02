@@ -20,6 +20,7 @@ Page({
     priceUpDown: 0, // 0 代表降序 1 代表升序
     queryArr: [],
     status: 'start', // 'start'初始状态/ 'search'搜索中 / 'end'搜索完成
+    showToTop: false, // 是否显示回到顶部
   },
 
   /**
@@ -68,6 +69,27 @@ Page({
       pagenum: this.data.pagenum,
       pagesize: this.data.pagesize
     })
+  },
+
+  /**
+   * 生命周期函数--监听用户滑动页面事件
+  */
+  onPageScroll(obj) {
+
+    // 页面在垂直方向已滚动的距离(px)
+    let scrollTop = obj.scrollTop
+    // 滚动超过500时,并且 showToTop是false(回到顶部是隐藏),让其显示
+    // 可以减少 setData的频繁操作
+    if (scrollTop > 500 && !this.data.showToTop) {
+      this.setData({
+        showToTop: true
+      })
+    } else if (this.data.showToTop && scrollTop < 500) {
+      this.setData({
+        showToTop: false
+      })
+    }
+
   },
 
   // 搜索框输入时
@@ -215,6 +237,14 @@ Page({
       pagesize: this.data.pagesize
     })
     // }, 100)
+  },
+
+  // 回到顶部
+  toTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   }
 
 

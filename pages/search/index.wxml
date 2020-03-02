@@ -62,4 +62,8 @@
       <view class="history-item" wx:for="{{queryArr}}" wx:key="index" bindtap="changeQuery" data-index="{{index}}" > {{item}} </view>
     </view>
   </view>
+  <!-- 回到顶部 -->
+  <view class="toTop" bindtap="toTop" hidden="{{!showToTop}}">
+    <icon class="iconfont icon-huidaodingbu1"></icon>
+  </view>
 </view>
