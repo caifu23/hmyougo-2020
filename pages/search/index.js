@@ -32,18 +32,6 @@ Page({
     // console.log(options)
     let cid = options.cid // 分类id
     let query = options.query // 查询关键词
-    // 注释--实现分类id查询
-    // if (cid) {
-    //   this.setData({
-    //     cid: cid
-    //   })
-    //   // 搜索
-    //   this.searchProductKey({
-    //     cid: this.data.cid,
-    //     pagenum: this.data.pagenum,
-    //     pagesize: this.data.pagesize
-    //   })
-    // }
     if (query) {
       this.setData({
         query: query
@@ -85,9 +73,7 @@ Page({
   // 搜索框输入时
   handlerSearch(e) {
     // console.log(e)
-    let {
-      value
-    } = e.detail
+    let { value } = e.detail
     this.setData({
       query: value
     })
@@ -113,9 +99,7 @@ Page({
   // 搜索框确认时, 存储 搜索历史
   handlerConfirm(e) {
     // console.log(e)
-    let {
-      value
-    } = e.detail
+    let { value } = e.detail
     let orgArr = this.data.queryArr
     orgArr.unshift(value)
     this.setData({
@@ -139,16 +123,10 @@ Page({
       get({
         url: "/goods/search",
         data: options
-        // data: {
-        //   query: this.data.query,
-        //   // cid: this.data.cid
-        // }
+
       }).then(res => {
         // console.log(res)
-        let {
-          goods,
-          total
-        } = res.data.message
+        let { goods, total } = res.data.message
         // 保存商品总数
         this.setData({
           total: total
@@ -160,19 +138,17 @@ Page({
         this.setData({
             productList: this.data.productList
           }),
-          // 当前状态修改 完成搜索
-          this.setData({
-            status: 'end'
-          })
+        // 当前状态修改 完成搜索
+        this.setData({
+          status: 'end'
+        })
       })
     }, 2000)
   },
 
   // 点击筛选条件时
   handlerCondition(e) {
-    let {
-      condition
-    } = e.currentTarget.dataset
+    let { condition } = e.currentTarget.dataset
     this.setData({
       currentCondition: condition
     })
