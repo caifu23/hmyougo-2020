@@ -23,7 +23,7 @@
       <icon type="clear" size="16" bindtap="clearHistory"></icon>
     </view>
     <view class="history-list">
-      <navigator url="/pages/search/index?query={{item}}" class="history-item" wx:for="{{historyList}}" wx:key="index" > {{item}} </navigator>
+      <view  bindtap="historyTap"  data-index="{{index}}"  class="history-item" wx:for="{{historyList}}" wx:key="index" > {{item}} </view>
     </view>
   </view>
 </view>

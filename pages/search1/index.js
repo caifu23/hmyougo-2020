@@ -159,6 +159,35 @@ Page({
       showRecommand: true,
       recommendList: []
     })
+  },
+
+  // 点击搜索历史 的某一项时
+  historyTap(e) {
+    // 获取被点击的 搜索历史（索引）
+    let { index } = e.currentTarget.dataset
+    let query = this.data.historyList[index]
+
+    // 基于搜索历史不止一项时，不是第一项时
+    if (index != 0) {
+      // 获取当前搜索历史，解构是为了防止 引用同一个数组
+      let history = [...this.data.historyList]
+
+      // 将被点击的 一项 提前到 搜索历史最前面
+      history.splice(index, 1)
+      history.unshift(query)
+
+      // 保存搜索历史
+      this.setData({
+        historyList: history
+      })
+      // 保存到本地
+      wx.setStorageSync('ygSearchHistory', history)
+    }
+
+    // 跳转商品列表页
+    wx.navigateTo({
+      url: '/pages/search/index?query=' + query
+    })
   }
   
 })
