@@ -3,7 +3,7 @@
   <!-- 搜索框 -->
   <view class="search-input">
     <icon class="" type="search" size="18"></icon>
-    <input placeholder="请输入你想要的商品" bindinput="handlerInput" value="{{inputValue}}"></input>
+    <input placeholder="请输入你想要的商品" bindinput="handlerInput"  bindconfirm="handlerConfirm" value="{{inputValue}}"></input>
     <button>取消</button>
     <!-- 搜索关键词建议 -->
     <view class="recommand" hidden="{{showRecommand}}">
@@ -14,16 +14,13 @@
     </view>
   </view>
   <!-- 搜索历史 -->
-  <view class="history">
+  <view class="history" hidden="{{!showRecommand}}">
     <view class="history-head">
       <text> 历史搜索 </text>
       <icon type="clear" size="16"></icon>
     </view>
     <view class="history-list">
-      <view class="history-item"> 小米 </view>
-      <view class="history-item"> 小米只能电视 </view>
-      <view class="history-item"> 小米空气净化器 </view>
-      <view class="history-item"> 西门子洗衣机 </view>
+      <view class="history-item" wx:for="{{historyList}}" wx:key="index" > {{item}} </view>
     </view>
   </view>
 </view>
