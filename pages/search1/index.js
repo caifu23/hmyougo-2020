@@ -12,13 +12,15 @@ Page({
     lastValue: '',  // 被请求的输入框的值(上一次)
     recommendList: [], //输入建议
     searching: false,  // 是否正在查询请求中
+    historyList: [], // 搜索历史记录
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 获取搜索历史记录
+    this.getHistory()
   },
 
   // 监听键盘输入
@@ -27,15 +29,45 @@ Page({
     let { value } = e.detail
 
     // 输入值为空,不继续
-    if(!value.trim()) return;
+    // 清空输入建议,并隐藏
+    if(!value.trim()) {
+      this.setData({
+        recommendList: [],
+        showRecommand: true
+      })
+      return;
+    }
 
     // 将输入值 保存
+    // 并显示 输入建议
     this.setData({
-      inputValue: value
+      inputValue: value,
+      showRecommand: false
     })
 
     // 请求 输入建议
     this.getRecommendKey()
+  },
+
+  // 监听点击完成按钮(输入的确认)
+  handlerConfirm(e) {
+    // 获取用户确认时, 输入框的值
+    let { value } = e.detail
+
+    // 获取当前搜索历史
+    let history = this.data.historyList
+    history.unshift(value)
+
+    // 数组去重
+    history = [...new Set(history)]
+
+    // 存储到搜索历史记录
+    this.setData({
+      historyList: history
+    })
+    // 存储到本地
+    wx.setStorageSync('ygSearchHistory', history)
+
   },
 
   // 请求关键词 输入建议
@@ -77,6 +109,25 @@ Page({
       }
 
 
+    })
+  },
+
+  // 获取历史搜索记录
+  getHistory() {
+
+    // 从本地存储中获取
+    let history = wx.getStorageSync('ygSearchHistory')
+    console.log(history)
+
+    // 如果当前没有本地存储,则初始化
+    if(!history) {
+      history = [],
+      wx.setStorageSync('ygSearchHistory', history)
+    }
+
+    // 保存到data中
+    this.setData({
+      historyList: history
     })
   }
   
