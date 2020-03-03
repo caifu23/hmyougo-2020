@@ -1,18 +1,16 @@
 /* pages/category/index.wxss */
 
 .cate {
-  margin-top: 100rpx;
-  position: relative;
+  padding-top: 100rpx;
   display: flex;
 }
 .cate-left {
-  /* position: fixed;
-  top: 50px;
-  left: 0; */
   margin-right: 20rpx;
   width: 193rpx;
+  height: calc(100vh - 100rpx);
   background-color: #fff;
 }
+
 /* ::-webkit-scrollbar 
    这个属性使 scroll-view的滚动条不显示
  */
@@ -40,8 +38,8 @@
   color: #eb4450;
 }
 .cate-right {
-  /* margin-left: 213rpx; */
   width: 522rpx;
+  height: calc(100vh - 100rpx);
   background-color: #fff;
 }
 
