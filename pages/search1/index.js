@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showRecommand: false,  // 是否隐藏搜索建议
+    showRecommand: true,  // 是否隐藏搜索建议
     inputValue: '',  // 输入框的值
     lastValue: '',  // 被请求的输入框的值(上一次)
     recommendList: [], //输入建议
@@ -30,10 +30,13 @@ Page({
 
     // 输入值为空,不继续
     // 清空输入建议,并隐藏
+    // 输入框的值为空, 包括上一次的值
     if(!value.trim()) {
       this.setData({
         recommendList: [],
-        showRecommand: true
+        showRecommand: true,
+        inputValue: '',
+        lastValue: ''
       })
       return;
     }
@@ -67,6 +70,11 @@ Page({
     })
     // 存储到本地
     wx.setStorageSync('ygSearchHistory', history)
+
+    // 跳转到商品列表页
+    wx.redirectTo({
+      url: '/pages/search/index?query=' + value
+    })
 
   },
 
@@ -108,7 +116,6 @@ Page({
         this.getRecommendKey()
       }
 
-
     })
   },
 
@@ -117,7 +124,7 @@ Page({
 
     // 从本地存储中获取
     let history = wx.getStorageSync('ygSearchHistory')
-    console.log(history)
+    // console.log(history)
 
     // 如果当前没有本地存储,则初始化
     if(!history) {
@@ -128,6 +135,29 @@ Page({
     // 保存到data中
     this.setData({
       historyList: history
+    })
+  },
+
+  // 清除搜索历史
+  clearHistory() {
+    // 清除data中的数据
+    this.setData({
+      historyList: []
+    })
+    // 清除本地存储
+    wx.setStorageSync('ygSearchHistory', [])
+  },
+
+  // 取消按钮：清除输入框的值
+  cancelInput() {
+    // 清空输入框的值 和上一次的值
+    // 隐藏搜索建议
+    // 搜索建议清空
+    this.setData({
+      inputValue: '',
+      lastValue: '',
+      showRecommand: true,
+      recommendList: []
     })
   }
   

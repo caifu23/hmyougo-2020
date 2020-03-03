@@ -4,9 +4,11 @@
   <view class="search-input">
     <icon class="" type="search" size="18"></icon>
     <input placeholder="请输入你想要的商品" bindinput="handlerInput"  bindconfirm="handlerConfirm" value="{{inputValue}}"></input>
-    <button>取消</button>
+    <!-- 输入框有值时显示 取消按钮 -->
+    <button bindtap="cancelInput" wx:if="{{inputValue}}" >取消</button>
     <!-- 搜索关键词建议 -->
-    <view class="recommand" hidden="{{showRecommand}}">
+    <!-- 如果输入框有值，则显示 -->
+    <view class="recommand" hidden="{{showRecommand || !inputValue }}">
       <!-- <view class="recom-item"> <view class="recom-name"> <text>汽车</text>  </view>  <text class="iconfont icon-lefttop"></text> </view> -->
       <block wx:for="{{recommendList}}" wx:key="index" >
         <view class="recom-item"> <view class="recom-name"> <text></text> {{item.goods_name}} </view>  <text class="iconfont icon-lefttop"></text> </view>
@@ -14,10 +16,11 @@
     </view>
   </view>
   <!-- 搜索历史 -->
-  <view class="history" hidden="{{!showRecommand}}">
+  <!-- 如果输入框有值，或者搜索历史为空时，都不显示 -->
+  <view class="history" hidden="{{ inputValue || !historyList.length }}">
     <view class="history-head">
       <text> 历史搜索 </text>
-      <icon type="clear" size="16"></icon>
+      <icon type="clear" size="16" bindtap="clearHistory"></icon>
     </view>
     <view class="history-list">
       <view class="history-item" wx:for="{{historyList}}" wx:key="index" > {{item}} </view>
