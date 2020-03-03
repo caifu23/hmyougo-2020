@@ -1,0 +1,13 @@
+<!--pages/goods_list/index.wxml-->
+
+<view class="goods-list"> 
+  <!-- 搜索框 -->
+  <!-- box="bgGray" search组件的 外部样式类 -->
+  <!-- align="left" search组件的 prop属性控制 -->
+  <!-- query="小米" search组件输入框中的值  -->
+  <search box="bgGray" align="left" query="小米" />
+  
+  <!-- 商品列表区域 -->
+  <!-- 筛选条件 -->
+  <!-- 商品列表 -->
+</view>

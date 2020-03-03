@@ -1,9 +1,9 @@
 <!--components/search/index.wxml-->
-<view class="search">
+<view class="search box">
   <navigator url="../../pages/search1/index" open-type="redirect">
-    <view class="search-in">
+    <view class="search-in {{align}}">
       <icon type="search" color="#bbb" />
-      <text> 搜索 </text>
+      <text> {{query}} </text>
     </view>
   </navigator>
 </view>

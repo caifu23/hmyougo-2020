@@ -1,0 +1,6 @@
+/* pages/goods_list/index.wxss */
+
+/* 给组件定义的样式 */
+.bgGray {
+  background-color: #efefef!important;
+}
