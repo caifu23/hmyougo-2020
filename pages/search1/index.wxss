@@ -66,6 +66,12 @@
   height: 30px;
   line-height: 30px;
 }
+.recom-item .recom-name {
+  width: 70%;
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
 .recom-item .recom-name text {
   color: #ff2d4a;
 }

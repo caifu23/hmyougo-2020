@@ -3,13 +3,14 @@
   <!-- 搜索框 -->
   <view class="search-input">
     <icon class="" type="search" size="18"></icon>
-    <input placeholder="请输入你想要的商品"></input>
+    <input placeholder="请输入你想要的商品" bindinput="handlerInput" value="{{inputValue}}"></input>
     <button>取消</button>
     <!-- 搜索关键词建议 -->
     <view class="recommand" hidden="{{showRecommand}}">
-      <view class="recom-item"> <view class="recom-name"> <text>汽车</text>  </view>  <text class="iconfont icon-lefttop"></text> </view>
-      <view class="recom-item"> <view class="recom-name"> <text>汽车</text> 比亚迪 </view>   <text class="iconfont icon-lefttop"></text> </view>
-      <view class="recom-item"> <view class="recom-name"> <text>汽车</text> 大众 </view>   <text class="iconfont icon-lefttop"></text> </view>
+      <!-- <view class="recom-item"> <view class="recom-name"> <text>汽车</text>  </view>  <text class="iconfont icon-lefttop"></text> </view> -->
+      <block wx:for="{{recommendList}}" wx:key="index" >
+        <view class="recom-item"> <view class="recom-name"> <text></text> {{item.goods_name}} </view>  <text class="iconfont icon-lefttop"></text> </view>
+      </block>
     </view>
   </view>
   <!-- 搜索历史 -->
