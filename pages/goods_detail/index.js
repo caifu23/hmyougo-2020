@@ -14,6 +14,7 @@ Page({
     interval: 2000, // 切换时间间隔
     duration: 500,  // 滑动动画时长
     picUrls: [],  // 预览图url数组
+    currentTab: 0, // 当前tab
   },
 
   /**
@@ -73,6 +74,15 @@ Page({
       urls: this.data.picUrls // 需要预览的图片http链接列表
     })
     
+  },
+
+  // 切换tab栏
+  changeTab(e) {
+    let { index } = e.currentTarget.dataset
+    // 改变当前tab index
+    this.setData({
+      currentTab: index
+    })
   }
 
 })

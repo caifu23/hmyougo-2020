@@ -25,8 +25,25 @@
         <view class="express"> 快递: <text>免运费</text> </view>
       </view>
     </view>
-    <!-- 商品促销 -->
-    <view> 促销 </view>
+    <!-- 商品详情 / 规格 -->
+    <view class="goods-main">
+      <!-- tab切换 -->
+      <view class="tabs">
+        <view wx:for="{{ ['详情' , '规格'] }}" wx:index="index" class="{{ currentTab === index ? 'active' : '' }}" bindtap="changeTab" data-index="{{index}}" > {{item}} </view>
+      </view>
+      <!-- 商品详情 -->
+      <view class="main-detail">
+        <!-- 富文本 -->
+        <rich-text nodes="{{goods_data.goods_introduce}}"  wx:if="{{currentTab === 0}}" ></rich-text>
+      </view>
+      <!-- 商品规格 -->
+      <view class="main-standard" wx:if="{{currentTab === 1}}">
+        <view class="main-item" wx:for="{{goods_data.attrs}}" wx:index="index" >
+          <text> {{item.attr_name}} </text>
+          <text> {{item.attr_vals}} </text>
+        </view>
+      </view>
+    </view>
     <!-- 底部栏--联系客服\购物车 -->
     <view class="goods-operate">
       <view class="contact">
