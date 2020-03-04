@@ -1,1 +1,51 @@
 <!--pages/cart/index.wxml-->
+<view class="container">
+  <!-- 收获信息 -->
+  <view class="take-delivery">
+    <view class="take-info">
+      <view class="person">
+        <text class="title"> 收货人：</text>
+        <text class="content"> 苏 </text>
+      </view>
+      <view class="phone">
+        <text class="title"> 13535750578 </text>
+        <text class="content iconfont icon-upward-right"></text>
+      </view>
+    </view>
+    <view class="take-addr">
+      <text class="title"> 收货地址：</text>
+      <text class="content"> 广东省广州市天河区珠吉 </text>
+    </view>
+  </view>
+
+  <!-- 购物车商品 -->
+  <view class="cart-goods">
+    <!-- 商家名 -->
+    <view class="seller">
+      <text class="iconfont icon-dianpu"></text>
+      <text> 优购生活馆 </text>
+    </view>
+    <!-- 商品列表 -->
+    <block>
+      <view class="goods-item">
+        <view class="select-icon"> <icon type="success" color="red" size="15"></icon> </view>
+        <view class="goods-info">
+          <view class="goods-left">
+            <image src="http://image1.suning.cn/uimg/b2c/newcatentries/0070134290-000000000149003877_1_200x200.jpg"></image>
+          </view>
+          <view class="goods-right">
+            <view class="goods-title"> 初遇2017潮牌 </view>
+            <view class="goods-data">
+              <view class="goods-price"> ￥279.00 </view>
+              <view class="goods-number">
+                <text>-</text>
+                <text>3</text>
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

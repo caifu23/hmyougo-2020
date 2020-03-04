@@ -1,1 +1,99 @@
 /* pages/cart/index.wxss */
+
+.take-delivery {
+  padding: 40rpx;
+  border-bottom: 5px solid skyblue;
+  font-size: 14px;
+  color: #333;
+}
+
+.take-delivery .take-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+
+.phone .title {
+  margin-right: 30rpx;
+}
+
+.cart-goods {
+  
+}
+.cart-goods .seller {
+  padding: 20rpx;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+}
+.cart-goods .seller .icon-dianpu {
+  font-size: 13px;
+  color: gray;
+}
+
+.cart-goods .goods-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  height: 155rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-goods .select-icon {
+  width: 12.5%;
+}
+
+.cart-goods .goods-info {
+  display: flex;
+  justify-content: space-between;
+  width: 87%;
+}
+
+.cart-goods .goods-left {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.cart-goods .goods-left image {
+  width: 100%;
+  height: 100%;
+}
+
+.cart-goods .goods-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 10px;
+  font-size: 12px;
+}
+.cart-goods .goods-right .goods-title {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cart-goods .goods-right .goods-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.goods-right .goods-data .goods-price {
+  width: 60%;
+  font-size: 14px;
+  color: #ff2d4a;
+}
+.goods-right .goods-data .goods-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%
+}
+.goods-data .goods-number text:first-child,
+.goods-data .goods-number text:last-child {
+  padding: 3px 5px;
+  border: 1px solid #000;
+}
