@@ -73,7 +73,7 @@ Page({
 
     // 跳转到商品列表页
     wx.redirectTo({
-      url: '/pages/search/index?query=' + value
+      url: '/pages/goods_list/index?query=' + value
     })
 
   },
@@ -186,7 +186,7 @@ Page({
 
     // 跳转商品列表页
     wx.navigateTo({
-      url: '/pages/search/index?query=' + query
+      url: '/pages/goods_list/index?query=' + query
     })
   }
   
