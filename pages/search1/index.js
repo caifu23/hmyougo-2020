@@ -13,6 +13,7 @@ Page({
     recommendList: [], //输入建议
     searching: false,  // 是否正在查询请求中
     historyList: [], // 搜索历史记录
+    placeholder: '请输入你想要的商品'
   },
 
   /**
@@ -21,6 +22,13 @@ Page({
   onLoad: function (options) {
     // 获取搜索历史记录
     this.getHistory()
+
+    // 如果是从列表页跳转过来，则将关键词作为 placeholder显示
+    if(options.query && options.query !== '搜索') {
+      this.setData({
+        placeholder: options.query
+      })
+    }
   },
 
   // 监听键盘输入
@@ -56,6 +64,14 @@ Page({
   handlerConfirm(e) {
     // 获取用户确认时, 输入框的值
     let { value } = e.detail
+
+    // 如果输入框的值为空，但是placeholder是从列表页传递的值
+    if (!value && this.data.placeholder !== '请输入你想要的商品') {
+      this.setData({
+        inputValue: this.data.placeholder
+      })
+      value = this.data.placeholder
+    }
 
     // 获取当前搜索历史
     let history = this.data.historyList

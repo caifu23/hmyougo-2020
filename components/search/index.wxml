@@ -1,6 +1,6 @@
 <!--components/search/index.wxml-->
 <view class="search box">
-  <navigator url="../../pages/search1/index" open-type="navigate">
+  <navigator url="../../pages/search1/index?query={{query}}" open-type="navigate">
     <view class="search-in {{align}}">
       <icon type="search" color="#bbb" />
       <text> {{query}} </text>

@@ -3,7 +3,7 @@
   <!-- 搜索框 -->
   <view class="search-input">
     <icon class="" type="search" size="18"></icon>
-    <input placeholder="请输入你想要的商品" bindinput="handlerInput"  bindconfirm="handlerConfirm" value="{{inputValue}}"></input>
+    <input placeholder="{{placeholder}}" bindinput="handlerInput"  bindconfirm="handlerConfirm" value="{{inputValue}}"></input>
     <!-- 输入框有值时显示 取消按钮 -->
     <button bindtap="cancelInput" wx:if="{{inputValue}}" >取消</button>
     <!-- 搜索关键词建议 -->
