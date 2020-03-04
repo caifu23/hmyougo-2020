@@ -89,3 +89,12 @@
   font-size: 17px;
   color: #ff2d4a;
 }
+
+.noneProduct {
+  margin-top: 5px;
+  padding: 20rpx;
+  text-align: center;
+}
+.noneProduct icon {
+  font-size: 24px;
+}

@@ -1,18 +1,18 @@
 <!--pages/goods_list/index.wxml-->
 
-<view class="goods-list"> 
+<view class="goods-list">
   <!-- 搜索框 -->
   <!-- box="bgGray" search组件的 外部样式类 -->
   <!-- align="left" search组件的 prop属性控制 -->
   <!-- query="小米" search组件输入框中的值  -->
   <search box="bgGray" align="left" query="小米" />
-  
+
   <!-- 商品列表区域 -->
-    <!-- 筛选条件 -->
+  <!-- 筛选条件 -->
   <view class="filter-condition">
     <view class="multiple {{currentCondition === 0 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{0}}"> 综合 </view>
     <view class="sales {{currentCondition === 1 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{1}}"> 销量 </view>
-    <view class="price {{currentCondition === 2 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{2}}"> 
+    <view class="price {{currentCondition === 2 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{2}}">
       <text> 价格 </text>
       <view class="up-down">
         <text class="up iconfont icon-sanjiaoxing {{ upDown ? 'active' : ''}}"></text>
@@ -20,10 +20,10 @@
       </view>
     </view>
   </view>
-  
-    <!-- 商品列表 -->
+
+  <!-- 商品列表 -->
   <view class="product">
-    <block wx:for ="{{goodsList}}" wx:key="index" >
+    <block wx:for="{{goodsList}}" wx:key="index">
       <view class="product-item">
         <view class="pro-image">
           <image src="{{item.goods_small_logo}}" mode="widthFix"></image>
@@ -34,5 +34,15 @@
         </view>
       </view>
     </block>
+  </view>
+  <view class="noneProduct">
+    <!-- 搜索结束,没有数据 -->
+    <text wx:if="{{goodsList.length === 0 && !loading  }}"> 抱歉,没有找到相关商品 </text>
+    <!-- 加载下一页结束, 并且已经是全部数据时 -->
+    <text wx:if="{{goodsList.length === total && total  && !loading }}"> 没有更多商品了 </text>
+    <!-- 加载中 -->
+    <view wx:if="{{loading === true }}"> 加载中
+      <icon class="iconfont icon-loading"></icon>
+    </view>
   </view>
 </view>

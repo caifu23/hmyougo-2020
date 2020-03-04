@@ -12,6 +12,9 @@ Page({
     query: '', //查询关键字
     goodsList: [], //商品列表
     total: 0,  //商品总数
+    pagenum: 1, //页码
+    pagesize: 10, //页容量
+    loading: false, // 是否在请求/加载中
   },
 
   /**
@@ -27,7 +30,36 @@ Page({
 
     // 获取商品列表数据
     this.getGoodsList({
-      query: query
+      query: query,
+      pagenum: this.data.pagenum,
+      pagesize: this.data.pagesize
+    })
+    
+  },
+
+  /**
+   * 监听用户上拉触底
+  */
+  onReachBottom() {
+    // 判断是否在加载中
+    if (this.data.loading) {
+      return;
+    }
+    // 如果商品数据长度 >= total ，表示已经是全部数据，不再请求
+    if (this.data.goodsList.length >= this.data.total) {
+      return;
+    }
+
+    // 加载下一页数据
+    this.setData({
+      pagenum: this.data.pagenum + 1
+    })
+
+    // 请求数据
+    this.getGoodsList({
+      query: this.data.query,
+      pagenum: this.data.pagenum,
+      pagesize: this.data.pagesize
     })
   },
 
@@ -51,11 +83,16 @@ Page({
 
   // 获取商品列表数据
   getGoodsList(options) {
+    // 修改请求状态：加载中
+    this.setData({
+      loading: true
+    })
+
     get({
       url: '/goods/search',
       data: options
     }).then(res => {
-      console.log(res)
+
       // 获取商品数组，总数
       let { goods, total } = res.data.message
 
@@ -67,11 +104,19 @@ Page({
 
       // 保存
       this.setData({
-        goodsList: goods,
+        goodsList: [...this.data.goodsList, ...goods], // 数据追加
         total: total
       })
+
+      // 修改请求状态：请求完成
+      this.setData({
+        loading: false
+      })
     })
-  }
+  },
+
+
+
 
   
 })
