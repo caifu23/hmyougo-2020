@@ -83,6 +83,18 @@ Page({
     this.setData({
       currentTab: index
     })
+  },
+
+  // 打开客服会话
+  handleContact(e) {
+    console.log(e)
+  },
+
+  // 跳转购物车页
+  toCart() {
+    wx.switchTab({
+      url: '/pages/cart/index?goods_id=' + this.data.goods_id,
+    })
   }
 
 })

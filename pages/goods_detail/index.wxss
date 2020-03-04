@@ -105,13 +105,17 @@
   text-align: left;
 }
 .goods-main .main-item text {
-  flex: 1;
+  flex: 3;
   text-indent: 5px;
   height: 100rpx;
   line-height: 100rpx;
   border: 1px solid #eee;
   font-size: 12px;
   overflow: hidden;
+}
+.goods-main .main-item text:first-child {
+  flex: 2;
+  font-weight: bold;
 }
 .goods-detail .goods-operate {
   position: fixed;
@@ -136,6 +140,18 @@
 .goods-operate .contact,
 .goods-operate .shopcart {
   flex: 5;
+}
+.goods-operate .contact {
+  position: relative;
+}
+.goods-operate .contact button {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  height: 100%;
+  opacity: 0;
 }
 .goods-operate .contact .iconfont,
 .goods-operate .shopcart .iconfont {

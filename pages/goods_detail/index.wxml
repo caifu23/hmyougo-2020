@@ -29,7 +29,7 @@
     <view class="goods-main">
       <!-- tab切换 -->
       <view class="tabs">
-        <view wx:for="{{ ['详情' , '规格'] }}" wx:index="index" class="{{ currentTab === index ? 'active' : '' }}" bindtap="changeTab" data-index="{{index}}" > {{item}} </view>
+        <view wx:for="{{ ['详情' , '规格'] }}" wx:key="index" class="{{ currentTab === index ? 'active' : '' }}" bindtap="changeTab" data-index="{{index}}" > {{item}} </view>
       </view>
       <!-- 商品详情 -->
       <view class="main-detail">
@@ -38,7 +38,7 @@
       </view>
       <!-- 商品规格 -->
       <view class="main-standard" wx:if="{{currentTab === 1}}">
-        <view class="main-item" wx:for="{{goods_data.attrs}}" wx:index="index" >
+        <view class="main-item" wx:for="{{goods_data.attrs}}" wx:key="index" >
           <text> {{item.attr_name}} </text>
           <text> {{item.attr_vals}} </text>
         </view>
@@ -49,12 +49,13 @@
       <view class="contact">
         <text class="iconfont icon-callingrobort"></text>
         <text>联系客服</text>
+        <button open-type="contact" bindcontact="handleContact">客服</button>
       </view>
       <view class="shopcart">
         <text class="iconfont icon-icon-test2"></text>
         <text> 购物车 </text>
       </view>
-      <view class="add-cart">
+      <view class="add-cart" bindtap="toCart">
         加入购物车
       </view>
       <view class="purchase">
