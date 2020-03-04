@@ -4,3 +4,41 @@
 .bgGray {
   background-color: #efefef!important;
 }
+
+.goods-list {
+  padding-top: 110rpx;
+}
+
+.goods-list .filter-condition {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.filter-condition > view {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  font-size: 13px;
+  color: #666;
+}
+.filter-condition > view.active {
+  color: #ff2d4a;
+}
+
+.filter-condition .price .up-down {
+  margin-left: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; 
+  height: 16px;
+}
+.filter-condition .price .up-down >text {
+  font-size: 6px;
+  color: #ccc;
+}
+.filter-condition .price .up-down .active {
+  color: #666;
+}

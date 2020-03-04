@@ -8,6 +8,20 @@
   <search box="bgGray" align="left" query="小米" />
   
   <!-- 商品列表区域 -->
-  <!-- 筛选条件 -->
-  <!-- 商品列表 -->
+    <!-- 筛选条件 -->
+  <view class="filter-condition">
+    <view class="multiple {{currentCondition === 0 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{0}}"> 综合 </view>
+    <view class="sales {{currentCondition === 1 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{1}}"> 销量 </view>
+    <view class="price {{currentCondition === 2 ? 'active' : '' }}" bindtap="changeCondition" data-index="{{2}}"> 
+      <text> 价格 </text>
+      <view class="up-down">
+        <text class="up iconfont icon-sanjiaoxing {{ upDown ? 'active' : ''}}"></text>
+        <text class="down iconfont icon-duobianxingkaobei {{ !upDown ? 'active' : ''}}"></text>
+      </view>
+    </view>
+  </view>
+  
+    <!-- 商品列表 -->
+  <view class="product">
+  </view>
 </view>
