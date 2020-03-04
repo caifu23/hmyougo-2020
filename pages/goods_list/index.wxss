@@ -42,3 +42,50 @@
 .filter-condition .price .up-down .active {
   color: #666;
 }
+
+.product {
+  
+}
+
+.product .product-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 25rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.product .product-item .pro-image {
+  width: 35%;
+  height: 100px;
+  overflow: hidden;
+}
+.product .product-item .pro-image image {
+  width: 100%;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.product .product-item .pro-info {
+  width: 65%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-item .pro-info .pro-title {
+  font-size: 13px;
+  color: #000;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.product-item .pro-info .pro-price {
+  font-size: 17px;
+  color: #ff2d4a;
+}

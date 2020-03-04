@@ -23,5 +23,16 @@
   
     <!-- 商品列表 -->
   <view class="product">
+    <block wx:for ="{{goodsList}}" wx:key="index" >
+      <view class="product-item">
+        <view class="pro-image">
+          <image src="{{item.goods_small_logo}}" mode="widthFix"></image>
+        </view>
+        <view class="pro-info">
+          <text class="pro-title"> {{item.goods_name}} </text>
+          <text class="pro-price"> ￥{{item.goods_price}} </text>
+        </view>
+      </view>
+    </block>
   </view>
 </view>
