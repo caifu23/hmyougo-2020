@@ -15,6 +15,7 @@ Page({
     pagenum: 1, //页码
     pagesize: 10, //页容量
     loading: false, // 是否在请求/加载中
+    showToTop: false, // 是否显示回到顶部
   },
 
   /**
@@ -62,6 +63,28 @@ Page({
       pagesize: this.data.pagesize
     })
   },
+
+  /**
+   * 生命周期函数--监听用户滑动页面事件
+  */
+  onPageScroll(obj) {
+
+    // 页面在垂直方向已滚动的距离(px)
+    let scrollTop = obj.scrollTop
+    // 滚动超过500时,并且 showToTop是false(回到顶部是隐藏),让其显示
+    // 可以减少 setData的频繁操作
+    if (scrollTop > 500 && !this.data.showToTop) {
+      this.setData({
+        showToTop: true
+      })
+    } else if (this.data.showToTop && scrollTop < 500) {
+      this.setData({
+        showToTop: false
+      })
+    }
+
+  },
+
 
   // 切换条件
   changeCondition(e) {
@@ -115,8 +138,12 @@ Page({
     })
   },
 
-
-
-
+  // 回到顶部
+  toTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+  }
   
 })

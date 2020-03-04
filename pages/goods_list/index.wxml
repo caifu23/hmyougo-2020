@@ -35,6 +35,7 @@
       </view>
     </block>
   </view>
+  <!-- 加载中/ 没有更多数据 / 没有找到 的提示 -->
   <view class="noneProduct">
     <!-- 搜索结束,没有数据 -->
     <text wx:if="{{goodsList.length === 0 && !loading  }}"> 抱歉,没有找到相关商品 </text>
@@ -44,5 +45,9 @@
     <view wx:if="{{loading === true }}"> 加载中
       <icon class="iconfont icon-loading"></icon>
     </view>
+  </view>
+  <!-- 回到顶部 -->
+  <view class="toTop" bindtap="toTop" hidden="{{!showToTop}}">
+    <icon class="iconfont icon-huidaodingbu1"></icon>
   </view>
 </view>
