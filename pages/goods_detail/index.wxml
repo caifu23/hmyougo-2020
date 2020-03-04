@@ -44,6 +44,12 @@
         </view>
       </view>
     </view>
+
+    <!-- 回到顶部 -->
+    <view class="toTop" bindtap="toTop" hidden="{{!showToTop}}">
+      <icon class="iconfont icon-huidaodingbu1"></icon>
+    </view>
+
     <!-- 底部栏--联系客服\购物车 -->
     <view class="goods-operate">
       <view class="contact">
@@ -62,5 +68,6 @@
         立即购买
       </view>
     </view>
+
   </view>
 </view>

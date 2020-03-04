@@ -15,6 +15,7 @@ Page({
     duration: 500,  // 滑动动画时长
     picUrls: [],  // 预览图url数组
     currentTab: 0, // 当前tab
+    showToTop: false, // 是否显示回到顶部
   },
 
   /**
@@ -95,6 +96,34 @@ Page({
     wx.switchTab({
       url: '/pages/cart/index?goods_id=' + this.data.goods_id,
     })
-  }
+  },
+
+  // 回到顶部
+  toTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+  },
+
+  /**
+   * 生命周期函数--监听用户滑动页面事件
+  */
+  onPageScroll(obj) {
+    // 页面在垂直方向已滚动的距离(px)
+    let scrollTop = obj.scrollTop
+    // 滚动超过500时,并且 showToTop是false(回到顶部是隐藏),让其显示
+    // 可以减少 setData的频繁操作
+    if (scrollTop > 500 && !this.data.showToTop) { 
+      this.setData({
+        showToTop: true
+      })
+    } else if (this.data.showToTop && scrollTop < 500) {
+      this.setData({
+        showToTop: false
+      })
+    }
+
+  },
 
 })
