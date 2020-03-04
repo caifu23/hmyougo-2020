@@ -28,6 +28,7 @@
   color: #ff2d4a;
 }
 .goods-info .goods-title {
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,6 +37,12 @@
   padding-right: 15px;
   font-size: 14px;
   color: #343434;
+  /* 2行溢出隐藏 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .goods-info .goods-title .collect {
   display: flex;

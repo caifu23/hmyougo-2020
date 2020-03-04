@@ -4,9 +4,9 @@
     <!-- 商品主要信息 图片,价格,标题-->
     <view class="goods-info">
       <!-- 商品图片轮播 -->
-      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular indicator-color="rgba(255,255,255, .7)" indicator-active-color="rgba(255,255,255, 1)" class="goods_img">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular  class="goods_img">
         <block wx:for="{{goods_data.pics}}" wx:key="index">
-          <swiper-item>
+          <swiper-item bindtap="previewImg" data-index="{{index}}" >
             <image src="{{item.pics_mid_url}}"></image>
           </swiper-item>
         </block>
