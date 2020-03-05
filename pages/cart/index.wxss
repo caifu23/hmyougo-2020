@@ -107,7 +107,7 @@
 }
 .goods-data .goods-number text:first-child,
 .goods-data .goods-number text:last-child {
-  padding: 3px 5px;
+  padding: 3px 8px;
   border: 1px solid #000;
 }
 
