@@ -57,11 +57,11 @@
         <text>联系客服</text>
         <button open-type="contact" bindcontact="handleContact">客服</button>
       </view>
-      <view class="shopcart">
+      <view class="shopcart" bindtap="toCart">
         <text class="iconfont icon-icon-test2"></text>
         <text> 购物车 </text>
       </view>
-      <view class="add-cart" bindtap="toCart">
+      <view class="add-cart" bindtap="addCart" >
         加入购物车
       </view>
       <view class="purchase">

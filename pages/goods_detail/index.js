@@ -16,6 +16,7 @@ Page({
     picUrls: [],  // 预览图url数组
     currentTab: 0, // 当前tab
     showToTop: false, // 是否显示回到顶部
+    cartList: [], // 购物车商品列表
   },
 
   /**
@@ -30,6 +31,9 @@ Page({
 
     // 获取商品详情
     this.getGoodDetail()
+
+    // 获取购物车数据
+    this.getCart()
   },
 
   // 获取商品详情
@@ -49,6 +53,20 @@ Page({
       })
       // 处理预览图片数据
       this.modPreviewData()
+    })
+  },
+
+  // 获取购物车商品
+  getCart() {
+    let cartList = wx.getStorageSync('cartList')
+
+    if (!cartList) {
+      // 初始化购物车数据
+      cartList = []
+    }
+    // 保存
+    this.setData({
+      cartList: cartList
     })
   },
 
@@ -96,6 +114,37 @@ Page({
     wx.switchTab({
       url: '/pages/cart/index?goods_id=' + this.data.goods_id,
     })
+  },
+  // 添加到购物车
+  addCart() {
+    // 将当前的商品信息，本地存储
+    let currentGoods = {
+      goods_id: this.data.goods_id,
+      goods_name: this.data.goods_data.goods_name,
+      goods_price: this.data.goods_data.goods_price,
+      goods_small_logo: this.data.goods_data.goods_small_logo,
+      num: 1  // 商品件数
+    }
+    // 判断当前商品是否 购物车已经有
+    let cartList = [...this.data.cartList]
+    console.log(this.data.cartList)
+    let isIndex = cartList.findIndex(ele => {
+      return +ele.goods_id === +this.data.goods_id
+    })
+    console.log(isIndex)
+    if (isIndex > -1) {
+       // 已经存在该商品，则数量加一
+       cartList[isIndex].num ++
+    }else {
+        // 否则，添加该商品
+        cartList[cartList.length] = currentGoods
+    }
+    // 保存到data
+    this.setData({
+      cartList: cartList
+    })
+    // 保存到本地
+    wx.setStorageSync('cartList', cartList)
   },
 
   // 回到顶部
