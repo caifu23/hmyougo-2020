@@ -59,6 +59,7 @@
       </view>
       <view class="shopcart" bindtap="toCart">
         <text class="iconfont icon-icon-test2"></text>
+        <view class="tocart-number">{{cartList.length}}</view>
         <text> 购物车 </text>
       </view>
       <view class="add-cart" bindtap="addCart" >
