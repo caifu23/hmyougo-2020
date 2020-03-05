@@ -17,6 +17,7 @@ Page({
     currentTab: 0, // 当前tab
     showToTop: false, // 是否显示回到顶部
     cartList: [], // 购物车商品列表
+    totalCart: 0,  // 购物车商品数量
   },
 
   /**
@@ -34,6 +35,9 @@ Page({
 
     // 获取购物车数据
     this.getCart()
+
+    // 获取购物车数量
+    this.getCartTotal()
   },
 
   // 获取商品详情
@@ -67,6 +71,19 @@ Page({
     // 保存
     this.setData({
       cartList: cartList
+    })
+  },
+
+  // 获取购物车商品数量
+  getCartTotal() {
+    let cartList = this.data.cartList
+    let total = 0
+    cartList.forEach(v => {
+      total += v.num
+    })
+    // 保存
+    this.setData({
+      totalCart: total
     })
   },
 
@@ -127,11 +144,9 @@ Page({
     }
     // 判断当前商品是否 购物车已经有
     let cartList = [...this.data.cartList]
-    console.log(this.data.cartList)
     let isIndex = cartList.findIndex(ele => {
       return +ele.goods_id === +this.data.goods_id
     })
-    console.log(isIndex)
     if (isIndex > -1) {
        // 已经存在该商品，则数量加一
        cartList[isIndex].num ++
@@ -139,12 +154,15 @@ Page({
         // 否则，添加该商品
         cartList[cartList.length] = currentGoods
     }
+    
     // 保存到data
     this.setData({
       cartList: cartList
     })
     // 保存到本地
     wx.setStorageSync('cartList', cartList)
+    // 修改购物车数量
+    this.getCartTotal()
   },
 
   // 回到顶部
