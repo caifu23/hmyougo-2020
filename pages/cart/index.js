@@ -58,19 +58,20 @@ Page({
 
     if (cartData[index].num <= 1) {
       // 减一则是删除，按钮不可点
-
+      // 删除该商品
+      cartData.splice(index, 1)
     }else {
       cartData[index].num--
     }
-
-    // 计算总价格\总件数
-    this.computePrice()
 
     // 保存
     this.setData({
       cartData: cartData
     })
     wx.setStorageSync('cartList', cartData)
+
+    // 计算总价格\总件数
+    this.computePrice()
   },
 
   // 商品加一
