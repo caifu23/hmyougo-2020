@@ -31,30 +31,23 @@ Page({
   // 获取购物车数据
   getCartData() {
     let cartList = wx.getStorageSync('cartList')
-    console.log(cartList)
+    // console.log(cartList)
     // 如果此时没有，初始化
     if (!cartList) {
       cartList = []
     }
     // 修改购物车数据，价格
-    // 计算总价格，总件数
     // 勾选状态
-    let totalNum = 0;
-    let totalPrice = 0;
-
     cartList = cartList.map(v => {
       v.goods_price = Number(v.goods_price).toFixed(2)
-      totalNum += v.num 
-      totalPrice += v.num * v.goods_price
+
       // 添加勾选状态，默认false
       v.selectStatus = false
       return v;
     })
     // 保存
     this.setData({
-      cartData: cartList,
-      totalNum: totalNum,
-      totalPrice: Number(totalPrice).toFixed(2)
+      cartData: cartList
     })
   },
 
@@ -69,6 +62,10 @@ Page({
     }else {
       cartData[index].num--
     }
+
+    // 计算总价格\总件数
+    this.computePrice()
+
     // 保存
     this.setData({
       cartData: cartData
@@ -82,6 +79,10 @@ Page({
     let cartData = [...this.data.cartData]
     // 商品加一
     cartData[index].num ++
+
+    // 计算总价格\总件数
+    this.computePrice()
+
     // 保存
     this.setData({
       cartData: cartData
@@ -97,6 +98,9 @@ Page({
     cartData[index].selectStatus = !cartData[index].selectStatus
     // 判断是否全选状态
     this.isSelectAll()
+
+    // 计算总价格\总件数
+    this.computePrice()
 
     // 保存
     this.setData({
@@ -135,11 +139,36 @@ Page({
     cartData.forEach(v => {
       v.selectStatus = this.data.selectAllStatus
     })
+
+    // 计算总价格\总件数
+    this.computePrice()
+
     // 保存
     this.setData({
       cartData: cartData
     })
+    // 是否勾选，可不保存到本地
+    wx.setStorageSync('cartList', cartData)
+  },
 
+  // 计算合计金额、结算件数
+  computePrice() {
+    let cartData = [...this.data.cartData]
+    let price = 0
+    let number = 0
+    // 遍历  累加
+    cartData.forEach(v => {
+      if (v.selectStatus) {
+        price += v.goods_price * v.num
+        number += v.num
+      }
+    })
+
+    // 保存
+    this.setData({
+      totalPrice: price,
+      totalNum: number
+    })
   }
 
 
