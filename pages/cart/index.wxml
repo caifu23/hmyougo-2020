@@ -26,21 +26,26 @@
       <text> 优购生活馆 </text>
     </view>
     <!-- 商品列表 -->
-    <block>
+    <block wx:for="{{cartData}}" wx:key="index" >
       <view class="goods-item">
-        <view class="select-icon"> <icon type="success" color="red" size="15"></icon> </view>
+        <view class="select-icon" bindtap="changeSelect" data-index="{{index}}"> 
+          <!-- 勾选状态 -->
+          <icon type="success" color="red" size="15" wx:if="{{item.selectStatus}}" ></icon> 
+          <!-- 未勾选 -->
+          <text wx:if="{{!item.selectStatus}}" ></text>
+        </view>
         <view class="goods-info">
           <view class="goods-left">
-            <image src="http://image1.suning.cn/uimg/b2c/newcatentries/0070134290-000000000149003877_1_200x200.jpg"></image>
+            <image src="{{item.goods_small_logo}}"></image>
           </view>
           <view class="goods-right">
-            <view class="goods-title"> 初遇2017潮牌 </view>
+            <view class="goods-title"> {{item.goods_name}} </view>
             <view class="goods-data">
-              <view class="goods-price"> ￥279.00 </view>
+              <view class="goods-price"> ￥{{item.goods_price}} </view>
               <view class="goods-number">
-                <text>-</text>
-                <text>3</text>
-                <text>+</text>
+                <text bindtap="reduceGoods" data-index="{{index}}">-</text>
+                <text>{{item.num}}</text>
+                <text bindtap="addGoods" data-index="{{index}}">+</text>
               </view>
             </view>
           </view>
@@ -51,18 +56,21 @@
 
   <!-- 购物车结算 -->
   <view class="cart-sum">
-    <view class="select-icon"> 
-      <icon type="success" color="red" size="15"></icon>
+    <view class="select-icon" bindtap="toggleAll"> 
+      <!-- 已勾选 -->
+      <icon type="success" color="red" size="15" wx:if="{{selectAllStatus}}"  ></icon>
+      <!-- 未勾选 -->
+      <text wx:if="{{!selectAllStatus}}" ></text>
       <text>全选</text>
     </view>
     <view class="calc-price">
       <view class="price">
-        合计：<text>￥14110.00</text>
+        合计：<text>￥{{totalPrice}}</text>
       </view>
       <text>包含运费</text>
     </view>
     <view class="sum">
-      结算(<text>2</text>)
+      结算(<text>{{totalNum}}</text>)
     </view>
   </view>
 
