@@ -1,6 +1,6 @@
 <!--pages/cart/index.wxml-->
 <view class="container">
-  <!-- 收获信息 -->
+  <!-- 收货信息 -->
   <view class="take-delivery">
     <view class="take-info">
       <view class="person">
@@ -48,4 +48,22 @@
       </view>
     </block>
   </view>
+
+  <!-- 购物车结算 -->
+  <view class="cart-sum">
+    <view class="select-icon"> 
+      <icon type="success" color="red" size="15"></icon>
+      <text>全选</text>
+    </view>
+    <view class="calc-price">
+      <view class="price">
+        合计：<text>￥14110.00</text>
+      </view>
+      <text>包含运费</text>
+    </view>
+    <view class="sum">
+      结算(<text>2</text>)
+    </view>
+  </view>
+
 </view>
