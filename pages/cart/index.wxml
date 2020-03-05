@@ -1,7 +1,7 @@
 <!--pages/cart/index.wxml-->
 <view class="container">
   <!-- 收货信息 -->
-  <view class="take-delivery">
+  <view class="take-delivery" wx:if="{{cartData.length}}">
     <view class="take-info">
       <view class="person">
         <text class="title"> 收货人：</text>
@@ -19,7 +19,7 @@
   </view>
 
   <!-- 购物车商品 -->
-  <view class="cart-goods">
+  <view class="cart-goods" wx:if="{{cartData.length}}">
     <!-- 商家名 -->
     <view class="seller">
       <text class="iconfont icon-dianpu"></text>
@@ -55,7 +55,7 @@
   </view>
 
   <!-- 购物车结算 -->
-  <view class="cart-sum">
+  <view class="cart-sum" wx:if="{{cartData.length}}">
     <view class="select-icon" bindtap="toggleAll"> 
       <!-- 已勾选 -->
       <icon type="success" color="red" size="15" wx:if="{{selectAllStatus}}"  ></icon>
@@ -74,4 +74,9 @@
     </view>
   </view>
 
+  <view class="noGoods" wx:if="{{!cartData.length}}"  >
+    你还没有添加任何商品
+  </view>
 </view>
+
+

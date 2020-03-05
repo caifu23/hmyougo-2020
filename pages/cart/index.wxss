@@ -1,5 +1,7 @@
 /* pages/cart/index.wxss */
 .container {
+  height: 100vh;
+  overflow: auto;
   padding-bottom: calc(100rpx + 10px);
   background-color: #f5f5f5;
 }
@@ -167,4 +169,10 @@
 }
 .cart-sum .calc-price .price text {
   color: #ff2d4a;
+}
+
+.noGoods {
+  padding-top: 100rpx;
+  text-align: center;
+  background-color: transparent!important;
 }

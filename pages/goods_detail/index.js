@@ -152,7 +152,10 @@ Page({
        cartList[isIndex].num ++
     }else {
         // 否则，添加该商品
-        cartList[cartList.length] = currentGoods
+        // 这是尾部添加, 
+        // cartList[cartList.length] = currentGoods
+        // 改为头部添加
+        cartList = [currentGoods, ...cartList]
     }
     
     // 保存到data
