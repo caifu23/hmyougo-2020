@@ -70,8 +70,11 @@ Page({
     })
     wx.setStorageSync('cartList', cartData)
 
+    // 如果该商品是 勾选的,则计算总价格;  反之,不用
     // 计算总价格\总件数
-    this.computePrice()
+    if (cartData[index].selectStatus) {
+      this.computePrice()
+    }
   },
 
   // 商品加一
@@ -81,8 +84,11 @@ Page({
     // 商品加一
     cartData[index].num ++
 
+    // 如果该商品是 勾选的,则计算总价格;  反之,不用
     // 计算总价格\总件数
-    this.computePrice()
+    if (cartData[index].selectStatus) {
+      this.computePrice()
+    }
 
     // 保存
     this.setData({
@@ -154,6 +160,7 @@ Page({
 
   // 计算合计金额、结算件数
   computePrice() {
+    console.log('-----')
     let cartData = [...this.data.cartData]
     let price = 0
     let number = 0
