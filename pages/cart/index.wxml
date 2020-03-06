@@ -16,7 +16,11 @@
       <text class="title"> 收货地址：</text>
       <text class="content"> 广东省广州市天河区珠吉 </text>
     </view>
+    <view class="take-img">
+      <image src="../../images/cart_border@2x.png"></image>
+    </view>
   </view>
+  
 
   <!-- 购物车商品 -->
   <view class="cart-goods" wx:if="{{cartData.length}}">
