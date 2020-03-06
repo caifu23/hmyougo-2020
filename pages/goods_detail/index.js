@@ -138,9 +138,10 @@ Page({
     let currentGoods = {
       goods_id: this.data.goods_id,
       goods_name: this.data.goods_data.goods_name,
-      goods_price: this.data.goods_data.goods_price,
+      goods_price: Number(this.data.goods_data.goods_price).toFixed(2),
       goods_small_logo: this.data.goods_data.goods_small_logo,
-      num: 1  // 商品件数
+      num: 1,  // 商品件数
+      selectStatus: true, //默认选中状态
     }
     // 判断当前商品是否 购物车已经有
     let cartList = [...this.data.cartList]
@@ -150,6 +151,14 @@ Page({
     if (isIndex > -1) {
        // 已经存在该商品，则数量加一
        cartList[isIndex].num ++
+       // 默认选中状态
+       cartList[isIndex].selectStatus = true
+       //  然后将该商品的位置提前
+       let currentItem = cartList[isIndex]
+       //  删除
+       cartList.splice(isIndex, 1)
+       //  头部添加
+       cartList.unshift(currentItem)
     }else {
         // 否则，添加该商品
         // 这是尾部添加, 
