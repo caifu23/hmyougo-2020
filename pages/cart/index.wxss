@@ -113,7 +113,7 @@
   align-items: center;
 }
 .goods-right .goods-data .goods-price {
-  width: 60%;
+  width: 55%;
   font-size: 14px;
   color: #ff2d4a;
 }
@@ -121,12 +121,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%
+  width: 45%
 }
 .goods-data .goods-number text:first-child,
 .goods-data .goods-number text:last-child {
   padding: 3px 8px;
   border: 1px solid #000;
+}
+.goods-data .goods-number input {
+  margin: 0 5px;
+  width: 30px;
+  text-align: center;
 }
 
 .cart-sum {

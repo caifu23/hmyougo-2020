@@ -47,10 +47,12 @@
             <view class="goods-data">
               <view class="goods-price"> ￥{{item.goods_price}} </view>
               <view class="goods-number">
-                <text bindtap="reduceGoods" data-index="{{index}}">-</text>
+                <text bindtap="changeNumber" data-index="{{index}}" data-num="{{-1}}">-</text>
                 <!-- <text>{{item.num}}</text> -->
-                <input value="{{item.num}}"></input>
-                <text bindtap="addGoods" data-index="{{index}}">+</text>
+                <!-- 数量输入框 -->
+                <!-- 输入后，失焦才重新计算 总价格和数量 -->
+                <input value="{{item.num}}" type="number" bindblur="inputNum" data-index="{{index}}"></input>
+                <text bindtap="changeNumber" data-index="{{index}}" data-num="{{1}}">+</text>
               </view>
             </view>
           </view>
