@@ -17,7 +17,8 @@
 }
 
 .take-delivery .take-info,
-.take-delivery .take-addr {
+.take-delivery .take-addr,
+.take-delivery .take-add {
   padding: 0 40rpx;
 }
 

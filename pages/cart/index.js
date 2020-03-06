@@ -10,6 +10,7 @@ Page({
     totalNum: 0, //总件数
     selectData: [], // 选购的商品
     selectAllStatus: false,  //全选状态
+    address: {},  //收货地址
   },
 
   /**
@@ -19,6 +20,8 @@ Page({
     console.log('页面加载')
     // 页面加载,初始化  购物车数据
     // this.initCartData()
+    // 获取收货地址
+    this.getDelivery()
   },
 
   /**
@@ -295,6 +298,35 @@ Page({
     })
     // 本地存储
     wx.setStorageSync('cartList', cartData)
+  },
+
+  // 添加收货地址
+  addDelivery() {
+    // 获取用户收货地址
+    wx.chooseAddress({
+      success: (res) => {
+        let address =  {
+          name: res.userName,
+          tel: res.telNumber,
+          addr: res.provinceName + res.cityName + res.countyName + res.detailInfo
+        }
+        // 保存
+        this.setData({
+          address: address
+        })
+        // 保存本地
+        wx.setStorageSync('address', address)
+      }
+    })
+  },
+
+  // 获取收货地址
+  getDelivery() {
+    let address = wx.getStorageSync('address') || {}
+    // 保存
+    this.setData({
+      address: address
+    })
   }
 
 

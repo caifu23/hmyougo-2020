@@ -167,6 +167,13 @@ Page({
         cartList = [currentGoods, ...cartList]
     }
     
+    // 加入成功提示
+    wx.showToast({
+      title: '加入购物车成功',
+      icon: 'success',
+      duration: 500
+    })
+
     // 保存到data
     this.setData({
       cartList: cartList
