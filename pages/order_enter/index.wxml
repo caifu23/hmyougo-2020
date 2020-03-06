@@ -1,0 +1,68 @@
+<!--pages/order_enter/index.wxml-->
+<view class="container">
+  <!-- 收货信息 -->
+  <view class="take-delivery" >
+    <view class="take-info" wx:if="{{address.name}}" >
+      <view class="person">
+        <text class="content"> {{address.name}} </text>
+        <text class="title"> {{tel1}}****{{tel2}} </text>
+      </view>
+      <view class="phone">
+        <text class="content iconfont icon-upward-right" bindtap="addDelivery"></text>
+      </view>
+    </view>
+    <view class="take-addr" wx:if="{{address.name}}">
+      <text class="title"> 默认 </text>
+      <text class="content"> {{address.addr}} </text>
+    </view>
+    <view class="take-add" bindtap="addDelivery" wx:if="{{!address.name}}"> 添加收货地址 </view>
+    <view class="take-img">
+      <image src="../../images/cart_border@2x.png"></image>
+    </view>
+  </view>
+  
+
+  <!-- 购物车商品 -->
+  <view class="cart-goods" >
+    <!-- 商家名 -->
+    <view class="seller">
+      <text class="iconfont icon-dianpu"></text>
+      <text> 优购生活馆 </text>
+    </view>
+    <!-- 商品列表 -->
+    <block wx:for="{{cartData}}" wx:key="index" >
+      <view class="goods-item">
+        <view class="goods-info">
+          <view class="goods-left">
+            <image src="{{item.goods_small_logo}}"></image>
+          </view>
+          <view class="goods-right">
+            <view class="goods-title"> {{item.goods_name}} </view>
+            <view class="goods-data">
+              <view class="goods-price"> ￥{{item.goods_price}} </view>
+              <view class="goods-number">
+               <text>× {{item.num}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 购物车结算 -->
+  <view class="cart-sum" >
+    <view class="calc-price">
+      <view class="price">
+        实付金额：<text>{{totalPrice}}</text>
+      </view>
+    </view>
+    <view class="sum">
+      微信支付
+    </view>
+  </view>
+
+</view>
+
+
+

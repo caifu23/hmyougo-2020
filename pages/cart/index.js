@@ -67,6 +67,8 @@ Page({
 
     // 初始化，总价格，总件数
     this.computePrice()
+    // 判断是否全选状态
+    this.isSelectAll()
   },
 
   // 商品减一
