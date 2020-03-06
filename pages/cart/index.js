@@ -18,14 +18,14 @@ Page({
   onLoad: function (options) {
     console.log('页面加载')
     // 页面加载,初始化  购物车数据
-    this.initCartData()
+    // this.initCartData()
   },
 
   /**
    * 生命周期函数--监听页面显示
   */
   onShow: function () {
-
+    console.log('页面显示')
     // 获取购物车数据
     this.getCartData()
     
@@ -35,25 +35,12 @@ Page({
   // 首次获取,初始化 购物车数据
   initCartData() {
     let cartList = wx.getStorageSync('cartList')
-    // console.log(cartList)
+
     // 如果此时没有，初始化
     if (!cartList) {
       cartList = []
     }
-    // 不用 修改购物车数据，价格
-    // 首次进入, 需要初始化勾选状态
-    cartList = cartList.map(v => {
-
-      // 判断是否有勾选状态属性,  没有则-- 价格保留2位小数
-      if (!v.hasOwnProperty('selectStatus')) {
-        v.goods_price = Number(v.goods_price).toFixed(2)
-        // console.log(v.goods_price)
-      }
-      // 无论有无勾选状态属性,  都设置勾选状态，为false
-      v.selectStatus = false
-
-      return v;
-    })
+  
     // 保存
     this.setData({
       cartData: cartList
@@ -65,20 +52,18 @@ Page({
   getCartData() {
     let cartList = wx.getStorageSync('cartList')
 
-    cartList = cartList.map(v => {
-
-      // 判断是否有勾选状态属性,  没有则-- 价格保留2位小数
-      if (!v.hasOwnProperty('selectStatus')) {
-        v.goods_price = Number(v.goods_price).toFixed(2)
-        console.log(v.goods_price)
-      }
-
-      return v;
-    })
+    // 如果此时没有，初始化
+    if (!cartList) {
+      cartList = []
+    }
     // 保存
     this.setData({
       cartData: cartList
     })
+    wx.setStorageSync('cartList', cartList)
+
+    // 初始化，总价格，总件数
+    this.computePrice()
   },
 
   // 商品减一

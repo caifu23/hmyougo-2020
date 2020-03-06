@@ -48,7 +48,8 @@
               <view class="goods-price"> ￥{{item.goods_price}} </view>
               <view class="goods-number">
                 <text bindtap="reduceGoods" data-index="{{index}}">-</text>
-                <text>{{item.num}}</text>
+                <!-- <text>{{item.num}}</text> -->
+                <input value="{{item.num}}"></input>
                 <text bindtap="addGoods" data-index="{{index}}">+</text>
               </view>
             </view>
