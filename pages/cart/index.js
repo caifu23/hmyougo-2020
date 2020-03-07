@@ -31,9 +31,10 @@ Page({
     console.log('页面显示')
     // 获取购物车数据
     this.getCartData()
-    
+    // 进入购物车页时，显示tabbar右上角 数量
+    let cartList = wx.getStorageSync('cartList') || []
+    wx.setTabBarBadge({ index: 2, text: '' + cartList.length })
   },
-
 
   // 首次获取,初始化 购物车数据
   initCartData() {
@@ -300,6 +301,9 @@ Page({
     })
     // 本地存储
     wx.setStorageSync('cartList', cartData)
+
+    // 设置tabbar右上角数量
+    wx.setTabBarBadge({ index: 2, text: '' + cartData.length })
   },
 
   // 添加收货地址

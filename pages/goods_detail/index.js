@@ -172,7 +172,7 @@ Page({
       title: '加入购物车成功',
       icon: 'success',
       duration: 500
-    })
+    }),
 
     // 保存到data
     this.setData({
