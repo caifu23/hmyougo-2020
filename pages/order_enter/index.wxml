@@ -22,7 +22,7 @@
   </view>
   
 
-  <!-- 购物车商品 -->
+  <!--订单商品 -->
   <view class="cart-goods" >
     <!-- 商家名 -->
     <view class="seller">
@@ -50,14 +50,22 @@
     </block>
   </view>
 
-  <!-- 购物车结算 -->
+  <!-- 模拟授权 -->
+  <!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+  <!-- <open-data type="userAvatarUrl"></open-data> -->
+  <open-data type="userNickName"></open-data>
+  <!-- 需要使用 button 来授权登录 -->
+  <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <!-- <view wx:else>请升级微信版本</view> -->
+
+  <!-- 订单结算 -->
   <view class="cart-sum" >
     <view class="calc-price">
       <view class="price">
         实付金额：<text>{{totalPrice}}</text>
       </view>
     </view>
-    <view class="sum">
+    <view class="sum" bindtap="toPay">
       微信支付
     </view>
   </view>
