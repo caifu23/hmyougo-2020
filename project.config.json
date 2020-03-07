@@ -16,7 +16,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.2",
-	"appid": "wxc63758827c643f34",
+	"appid": "wxfb52f2d7b2f6123a",
 	"projectname": "yougo-2020",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -50,8 +50,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/category/index",
-					"pathName": "pages/category/index",
+					"name": "pages/cart/index",
+					"pathName": "pages/cart/index",
 					"query": "goods_id=8888",
 					"scene": null
 				}

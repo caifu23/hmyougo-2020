@@ -77,7 +77,7 @@
       </view>
       <text>包含运费</text>
     </view>
-    <view class="sum">
+    <view class="sum" bindtap="confirmPage">
       结算(<text>{{totalNum}}</text>)
     </view>
   </view>

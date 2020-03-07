@@ -320,8 +320,45 @@ Page({
         this.setData({
           address: address
         })
+        console.log('存储了')
         // 保存本地
         wx.setStorageSync('address', address)
+      },
+      fail: (res) => {
+        console.log( '拒绝获取地址' ,res)
+      }
+    })
+    // 获取用户当前 位置权限是否打开
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+        if (!res.authSetting['scope.address']) {
+          // 对话框，询问是否打开定位权限
+          this.openConfirm()
+        }
+          
+      }
+    })
+  },
+  // 询问是否打开定位权限
+  openConfirm() {
+    wx.showModal({
+      content: '品优购没有定位权限，是否去设置打开？',
+      confirmText: "确认",
+      cancelText: "取消",
+      success: function (res) {
+        console.log(res);
+        //点击“确认”时打开设置页面
+        if (res.confirm) {
+          console.log('用户点击确认')
+          wx.openSetting({
+            success: (res) => { 
+              console.log(res)
+             }
+          })
+        } else {
+          console.log('用户点击取消')
+        }
       }
     })
   },
@@ -332,6 +369,48 @@ Page({
     // 保存
     this.setData({
       address: address
+    })
+  },
+
+  // 结算
+  confirmPage() {
+    console.log('-------')
+    console.log(this.data.address.addr)
+    if (!this.data.address.addr) {
+      wx.showToast({
+        title: '请先添加收货地址！',
+        icon: 'none',
+      })
+      return;
+    }
+    let cartData = this.data.cartData
+    // let selectedGoods = cartData.filter(v => {
+    //   return v.selectStatus
+    // })
+    let selectedGoods = []
+    cartData.forEach(v => {
+      if (v.selectStatus) {
+        selectedGoods.push({
+          goods_id: +v.goods_id, 
+          goods_price: +v.goods_price, 
+          goods_number: +v.num
+        })
+      }
+    })
+    console.log(selectedGoods)
+    // 此处没有选中商品，提示
+    if (selectedGoods.length === 0) {
+      wx.showToast({
+        title: '你还没有勾选商品',
+        icon: 'none',
+      })
+      return;
+    }
+    // 将选中的商品数据，保存到本地
+    wx.setStorageSync('buyGoodsList', selectedGoods)
+    // 跳转订单确认页
+    wx.navigateTo({
+      url: '/pages/order_enter/index'
     })
   }
 

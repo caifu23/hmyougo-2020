@@ -26,7 +26,7 @@ Page({
     get({
       url: '/categories'
     }).then(res => {
-      console.log(res)
+      // console.log(res)
       let { message } = res.data
       if(!message) return;
       this.setData({
