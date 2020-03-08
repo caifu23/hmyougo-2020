@@ -308,20 +308,34 @@ Page({
         wx.setStorageSync('address', address)
       },
       fail: (res) => {
-        console.log( '拒绝获取地址' ,res)
-      }
-    })
-    // 获取用户当前 位置权限是否打开
-    wx.getSetting({
-      success: (res) => {
         console.log(res)
-        if (!res.authSetting['scope.address']) {
-          // 对话框，询问是否打开定位权限
-          this.openConfirm()
+        // 1、errMsg: "chooseAddress:fail auth deny"  
+        // -->  这个说明用户第一次拒绝授权
+
+        // 2、errMsg: "chooseAddress:fail authorize no response"  
+        // --> 这个说明用户在第一次拒绝授权之后，再次点击直接 走fail
+      },
+      complete: (res) => {
+        console.log(res.errMsg)
+        // 请求失败，权限拒绝
+        // 也就是用户第一次看到授权窗口时，拒绝了
+        if (res.errMsg.indexOf('authorize no response') > -1) {
+          // 可调起询问窗口
+          // 获取用户当前 位置权限是否打开
+          wx.getSetting({
+            success: (res) => {
+              console.log(res)
+              if (!res.authSetting['scope.address']) {
+                // 对话框，询问是否打开定位权限
+                this.openConfirm()
+              }
+
+            }
+          })
         }
-          
       }
     })
+
   },
   // 询问是否打开定位权限
   openConfirm() {
@@ -366,21 +380,24 @@ Page({
       })
       return;
     }
-    // 将勾选的商品，单独保存为订单商品数组，可用filter方法
+    
     let cartData = this.data.cartData
+    console.log(cartData)
     // 保存订单商品的数组
     let selectedGoods = []
+    // 将勾选的商品，单独保存为订单商品数组，可用filter方法
+    selectedGoods = cartData.filter(v => v.selectStatus)
     // 遍历取出
-    cartData.forEach(v => {
-      // 如果是选中状态
-      if (v.selectStatus) {
-        selectedGoods.push({
-          goods_id: +v.goods_id, 
-          goods_price: +v.goods_price, 
-          goods_number: +v.num
-        })
-      }
-    })
+    // cartData.forEach(v => {
+    //   // 如果是选中状态
+    //   if (v.selectStatus) {
+    //     selectedGoods.push({
+    //       goods_id: +v.goods_id, 
+    //       goods_price: +v.goods_price, 
+    //       goods_number: +v.num
+    //     })
+    //   }
+    // })
 
     // 此处没有选中商品，提示
     if (selectedGoods.length === 0) {
@@ -390,6 +407,7 @@ Page({
       })
       return;
     }
+    console.log(selectedGoods)
     // 将选中的商品数据，保存到本地
     wx.setStorageSync('buyGoodsList', selectedGoods)
 
