@@ -1,0 +1,8 @@
+<!--pages/authorize/index.wxml-->
+<view class="container">
+  <view class="tip">
+    点击下方按钮即可
+  </view>
+  <!-- 授权按钮：获取用户信息 -->
+  <button type="primary" open-type="getUserInfo" bindgetuserinfo="handlerUserInfo"> 获取授权 </button>
+</view>

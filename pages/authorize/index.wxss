@@ -1,0 +1,15 @@
+/* pages/authorize/index.wxss */
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 100px;
+  text-align: center;
+}
+.container button {
+  width: 700rpx!important;
+}
+.container .tip {
+  margin-bottom: 10px;
+  color: gray;
+}
