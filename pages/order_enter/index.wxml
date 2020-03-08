@@ -30,14 +30,14 @@
       <text> 优购生活馆 </text>
     </view>
     <!-- 商品列表 -->
-    <block wx:for="{{cartData}}" wx:key="index" >
+    <block wx:for="{{orderData}}" wx:key="index" >
       <view class="goods-item">
         <view class="goods-info">
           <view class="goods-left">
             <image src="{{item.goods_small_logo}}"></image>
           </view>
           <view class="goods-right">
-            <view class="goods-title"> {{item.goods_name}} </view>
+            <view class="goods-title"> 999{{item.goods_name}} </view>
             <view class="goods-data">
               <view class="goods-price"> ￥{{item.goods_price}} </view>
               <view class="goods-number">

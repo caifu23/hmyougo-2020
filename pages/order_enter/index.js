@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cartData: [],  // 购物车商品
+    orderData: [],  // 购物车商品
     address: {},  //收货地址
     totalPrice: 0,  //商品总价格
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -21,7 +21,7 @@ Page({
     // 获取收货地址
     this.getDelivery()
     // 获取购物车数据
-    this.getCartData()
+    this.getOrderData()
     // // 获取登录信息
     // this.toLogin()
     
@@ -60,18 +60,17 @@ Page({
   },
 
   // 获取购物车商品
-  getCartData() {
-    let cartList = wx.getStorageSync('cartList')
+  getOrderData() {
+    let orderList = wx.getStorageSync('buyGoodsList')
 
     // 如果此时没有，初始化
-    if (!cartList) {
-      cartList = []
+    if (!orderList) {
+      orderList = []
     }
     // 保存
     this.setData({
-      cartData: cartList
+      orderData: orderList
     })
-    // wx.setStorageSync('cartList', cartList)
 
     // 计算总金额
     this.calcPrice()
@@ -79,12 +78,12 @@ Page({
 
   // 计算总金额
   calcPrice() {
-    let cartData = this.data.cartData
+    let orderData = this.data.orderData
     let totalPrice = 0;
 
     // reduce 累加器，第一个参数回调，
     // 第二个参数是初始值--如果没有给则默认第一项
-    totalPrice = cartData.reduce((acc, cur) =>  acc + cur.goods_price * cur.num , 0)
+    totalPrice = orderData.reduce((acc, cur) =>  acc + cur.goods_price * cur.num , 0)
     // 保存
     this.setData({
       totalPrice: totalPrice
