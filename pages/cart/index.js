@@ -17,9 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('页面加载')
-    // 页面加载,初始化  购物车数据
-    // this.initCartData()
+
     // 获取收货地址
     this.getDelivery()
   },
@@ -28,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
   */
   onShow: function () {
-    console.log('页面显示')
+
     // 获取购物车数据
     this.getCartData()
     // 进入购物车页时，显示tabbar右上角 数量
@@ -36,21 +34,6 @@ Page({
     wx.setTabBarBadge({ index: 2, text: '' + cartList.length })
   },
 
-  // 首次获取,初始化 购物车数据
-  initCartData() {
-    let cartList = wx.getStorageSync('cartList')
-
-    // 如果此时没有，初始化
-    if (!cartList) {
-      cartList = []
-    }
-  
-    // 保存
-    this.setData({
-      cartData: cartList
-    })
-    wx.setStorageSync('cartList', cartList)
-  },
 
   // 页面切换时, 获取 购物车数据
   getCartData() {
@@ -72,7 +55,7 @@ Page({
     this.isSelectAll()
   },
 
-  // 商品减一
+  // 商品减一，弃用
   reduceGoods(e) {
     let { index } = e.currentTarget.dataset
     let cartData = [...this.data.cartData]
@@ -98,7 +81,7 @@ Page({
     }
   },
 
-  // 商品加一
+  // 商品加一，弃用
   addGoods(e) {
     let { index } = e.currentTarget.dataset
     let cartData = [...this.data.cartData]
@@ -320,7 +303,7 @@ Page({
         this.setData({
           address: address
         })
-        console.log('存储了')
+
         // 保存本地
         wx.setStorageSync('address', address)
       },
@@ -374,8 +357,8 @@ Page({
 
   // 结算
   confirmPage() {
-    console.log('-------')
-    console.log(this.data.address.addr)
+
+    // 判断是否有收货地址
     if (!this.data.address.addr) {
       wx.showToast({
         title: '请先添加收货地址！',
@@ -383,12 +366,13 @@ Page({
       })
       return;
     }
+    // 将勾选的商品，单独保存为订单商品数组，可用filter方法
     let cartData = this.data.cartData
-    // let selectedGoods = cartData.filter(v => {
-    //   return v.selectStatus
-    // })
+    // 保存订单商品的数组
     let selectedGoods = []
+    // 遍历取出
     cartData.forEach(v => {
+      // 如果是选中状态
       if (v.selectStatus) {
         selectedGoods.push({
           goods_id: +v.goods_id, 
@@ -397,7 +381,7 @@ Page({
         })
       }
     })
-    console.log(selectedGoods)
+
     // 此处没有选中商品，提示
     if (selectedGoods.length === 0) {
       wx.showToast({
@@ -408,6 +392,7 @@ Page({
     }
     // 将选中的商品数据，保存到本地
     wx.setStorageSync('buyGoodsList', selectedGoods)
+
     // 跳转订单确认页
     wx.navigateTo({
       url: '/pages/order_enter/index'
