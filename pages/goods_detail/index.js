@@ -143,6 +143,23 @@ Page({
       num: 1,  // 商品件数
       selectStatus: true, //默认选中状态
     }
+    let isNull = false; // 记录是否有空值
+
+    // 遍历商品信息里是否非空
+    Object.keys(currentGoods).forEach(v => {
+
+      if (isNull === true) return;  //只要有空值则不再继续
+      // 如果当前属性值为空
+      if (!currentGoods[v]) {
+        isNull = true
+        console.log('数据不齐全')
+      }
+      
+    })
+    //只要有空值则不再继续
+    if (isNull === true) return;  
+    console.log('跳转购物车')
+
     // 判断当前商品是否 购物车已经有
     let cartList = [...this.data.cartList]
     let isIndex = cartList.findIndex(ele => {

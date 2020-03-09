@@ -5,6 +5,15 @@
  * 
 */
 const request = (config = {}) => {
+  
+  if (config.url.indexOf('/goods/detail') > -1) {
+    // 如果是详情页，出现加载效果，防止数据没加载完，用户点击了加入购物车
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+   }
+
   // 判断url 是否需要加上基准路径
   if (config.url.search(/^http/) === -1) {
     config.url =  request.defaults.baseURL + config.url 
@@ -20,6 +29,13 @@ const request = (config = {}) => {
       },
       complete(res) {
         request.errors(res)
+        // 关闭加载动画
+        if (config.url.indexOf('/goods/detail') > -1) {
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 500)
+        }
+        
       }
     })
   })
