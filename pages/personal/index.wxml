@@ -1,2 +1,61 @@
 <!--pages/personal/index.wxml-->
-<text>pages/personal/index.wxml</text>
+<view class="container">
+  <!-- 个人信息 -->
+  <view class="personal-info">
+    <view class="info">
+      <text class="iconfont icon-config--shixin"></text>
+      <view class="img">
+        <image src=""></image>
+      </view>
+      <text class="iconfont icon-liaotian"></text>
+    </view>
+    <navigator url="">
+      <text></text>登录/注册
+    </navigator>
+  </view>
+  <view class="personal-box">
+    <view class="personal-others">
+      <view>
+        <text>0</text>
+        <text>收藏的店铺</text>
+      </view>
+      <view>
+        <text>0</text>
+        <text>收藏的商品</text>
+      </view>
+      <view>
+        <text>0</text>
+        <text>关注的商品</text>
+      </view>
+      <view>
+        <text>0</text>
+        <text>我的足迹</text>
+      </view>
+    </view>
+    <view class="personal-order">
+      <view class="order-title">我的订单</view>
+      <view class="order-info">
+        <navigator url="">
+          <text class="iconfont icon-daifukuan"></text>
+          <text>待付款</text>
+        </navigator>
+        <navigator url="">
+          <text class="iconfont icon-daishouhuo"></text>
+          <text>待收货</text>
+        </navigator>
+        <navigator url="">
+          <text class="iconfont icon-ic-refund"></text>
+          <text>退款/退货</text>
+        </navigator>
+        <navigator url="">
+          <text class="iconfont icon-dingwei-"></text>
+          <text>全部订单</text>
+        </navigator>
+      </view>
+    </view>
+    <view class="personal-addr">
+      <text>收货地址管理</text>
+      <navigator>></navigator>
+    </view>
+  </view>
+</view>
